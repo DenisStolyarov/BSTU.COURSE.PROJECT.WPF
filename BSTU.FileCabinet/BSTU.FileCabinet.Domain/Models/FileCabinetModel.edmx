@@ -1,0 +1,721 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище BSTU.FileCabinet.Domain.Models" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Authorizations">
+          <Key>
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="5" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="FacultyCode" />
+          </Key>
+          <Property Name="FacultyCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FacultyName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacultyCode" Type="varchar" MaxLength="10" />
+          <Property Name="SpecialtyCode" Type="varchar" MaxLength="10" />
+          <Property Name="GroupNumber" Type="smallint" />
+          <Property Name="Course" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Pulpit">
+          <Key>
+            <PropertyRef Name="PulpitCode" />
+          </Key>
+          <Property Name="PulpitCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PulpitName" Type="varchar" MaxLength="100" />
+          <Property Name="FacultyCode" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Specialty">
+          <Key>
+            <PropertyRef Name="SpecialtyCode" />
+          </Key>
+          <Property Name="SpecialtyCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SpecialtyName" Type="varchar" MaxLength="200" />
+          <Property Name="PulpitCode" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="100" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="Foto" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectCode" />
+          </Key>
+          <Property Name="SubjectCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SubjectName" Type="varchar" MaxLength="200" />
+          <Property Name="PulpitCode" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="TeacherCode" />
+          </Key>
+          <Property Name="TeacherCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TeacherName" Type="varchar" MaxLength="100" />
+          <Property Name="PulpitCode" Type="varchar" MaxLength="10" />
+          <Property Name="Foto" Type="varbinary(max)" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "FileCabinet.dbo.TeacherSubject" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="TeacherSubject">
+          <Key>
+            <PropertyRef Name="TeacherCode" />
+            <PropertyRef Name="SubjectCode" />
+            <PropertyRef Name="Course" />
+          </Key>
+          <Property Name="TeacherCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SubjectCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Course" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__TeacherSu__Subje__5AEE82B9">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="TeacherSubject" Type="Self.TeacherSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectCode" />
+            </Principal>
+            <Dependent Role="TeacherSubject">
+              <PropertyRef Name="SubjectCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TeacherSu__Teach__59FA5E80">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="TeacherSubject" Type="Self.TeacherSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherCode" />
+            </Principal>
+            <Dependent Role="TeacherSubject">
+              <PropertyRef Name="TeacherCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PULPIT_FACULTY">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="FacultyCode" />
+            </Principal>
+            <Dependent Role="Pulpit">
+              <PropertyRef Name="FacultyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SPECIALITY_PULPIT">
+          <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="0..1" />
+          <End Role="Specialty" Type="Self.Specialty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pulpit">
+              <PropertyRef Name="PulpitCode" />
+            </Principal>
+            <Dependent Role="Specialty">
+              <PropertyRef Name="PulpitCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_STUDENT">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Authorizations" Type="Self.Authorizations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Authorizations">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GROUP_FACULTY_FK">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="FacultyCode" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="FacultyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GROUP_SPECIALITY_FK">
+          <End Role="Specialty" Type="Self.Specialty" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialty">
+              <PropertyRef Name="SpecialtyCode" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="SpecialtyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STUDENT_GROUP_FK">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SUBJECT_PULPIT_FK">
+          <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="0..1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pulpit">
+              <PropertyRef Name="PulpitCode" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="PulpitCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TEACHER_PULPIT_FK">
+          <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="0..1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pulpit">
+              <PropertyRef Name="PulpitCode" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="PulpitCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetStudentsOfGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GroupId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetSubjectsOfStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StudentId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище BSTUFileCabinetDomainModelsContainer">
+          <EntitySet Name="Authorizations" EntityType="Self.Authorizations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pulpit" EntityType="Self.Pulpit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specialty" EntityType="Self.Specialty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherSubject" EntityType="Self.TeacherSubject" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TeacherSubject].[TeacherCode] AS [TeacherCode], 
+    [TeacherSubject].[SubjectCode] AS [SubjectCode], 
+    [TeacherSubject].[Course] AS [Course]
+    FROM [dbo].[TeacherSubject] AS [TeacherSubject]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__TeacherSu__Subje__5AEE82B9" Association="Self.FK__TeacherSu__Subje__5AEE82B9">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="TeacherSubject" EntitySet="TeacherSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TeacherSu__Teach__59FA5E80" Association="Self.FK__TeacherSu__Teach__59FA5E80">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="TeacherSubject" EntitySet="TeacherSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PULPIT_FACULTY" Association="Self.FK_PULPIT_FACULTY">
+            <End Role="Faculty" EntitySet="Faculty" />
+            <End Role="Pulpit" EntitySet="Pulpit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SPECIALITY_PULPIT" Association="Self.FK_SPECIALITY_PULPIT">
+            <End Role="Pulpit" EntitySet="Pulpit" />
+            <End Role="Specialty" EntitySet="Specialty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_STUDENT" Association="Self.FK_USER_STUDENT">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Authorizations" EntitySet="Authorizations" />
+          </AssociationSet>
+          <AssociationSet Name="GROUP_FACULTY_FK" Association="Self.GROUP_FACULTY_FK">
+            <End Role="Faculty" EntitySet="Faculty" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="GROUP_SPECIALITY_FK" Association="Self.GROUP_SPECIALITY_FK">
+            <End Role="Specialty" EntitySet="Specialty" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="STUDENT_GROUP_FK" Association="Self.STUDENT_GROUP_FK">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="SUBJECT_PULPIT_FK" Association="Self.SUBJECT_PULPIT_FK">
+            <End Role="Pulpit" EntitySet="Pulpit" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="TEACHER_PULPIT_FK" Association="Self.TEACHER_PULPIT_FK">
+            <End Role="Pulpit" EntitySet="Pulpit" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BSTU.FileCabinet.Domain.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Authorization">
+          <Key>
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_USER_STUDENT" FromRole="Authorizations" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="FacultyCode" />
+          </Key>
+          <Property Name="FacultyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FacultyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pulpits" Relationship="Self.FK_PULPIT_FACULTY" FromRole="Faculty" ToRole="Pulpit" />
+          <NavigationProperty Name="Groups" Relationship="Self.GROUP_FACULTY_FK" FromRole="Faculty" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacultyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SpecialtyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GroupNumber" Type="Int16" />
+          <Property Name="Course" Type="Int16" />
+          <NavigationProperty Name="Faculty" Relationship="Self.GROUP_FACULTY_FK" FromRole="Groups" ToRole="Faculty" />
+          <NavigationProperty Name="Specialty" Relationship="Self.GROUP_SPECIALITY_FK" FromRole="Groups" ToRole="Specialty" />
+          <NavigationProperty Name="Students" Relationship="Self.STUDENT_GROUP_FK" FromRole="Groups" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Pulpit">
+          <Key>
+            <PropertyRef Name="PulpitCode" />
+          </Key>
+          <Property Name="PulpitCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PulpitName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FacultyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Faculty" Relationship="Self.FK_PULPIT_FACULTY" FromRole="Pulpit" ToRole="Faculty" />
+          <NavigationProperty Name="Specialties" Relationship="Self.FK_SPECIALITY_PULPIT" FromRole="Pulpit" ToRole="Specialty" />
+          <NavigationProperty Name="Subjects" Relationship="Self.SUBJECT_PULPIT_FK" FromRole="Pulpit" ToRole="Subject" />
+          <NavigationProperty Name="Teachers" Relationship="Self.TEACHER_PULPIT_FK" FromRole="Pulpit" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="Specialty">
+          <Key>
+            <PropertyRef Name="SpecialtyCode" />
+          </Key>
+          <Property Name="SpecialtyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SpecialtyName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PulpitCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.GROUP_SPECIALITY_FK" FromRole="Specialty" ToRole="Groups" />
+          <NavigationProperty Name="Pulpit" Relationship="Self.FK_SPECIALITY_PULPIT" FromRole="Specialty" ToRole="Pulpit" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Authorizations" Relationship="Self.FK_USER_STUDENT" FromRole="Student" ToRole="Authorizations" />
+          <NavigationProperty Name="Group" Relationship="Self.STUDENT_GROUP_FK" FromRole="Student" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectCode" />
+          </Key>
+          <Property Name="SubjectCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubjectName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PulpitCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pulpit" Relationship="Self.SUBJECT_PULPIT_FK" FromRole="Subject" ToRole="Pulpit" />
+          <NavigationProperty Name="TeacherSubjects" Relationship="Self.FK__TeacherSu__Subje__5AEE82B9" FromRole="Subject" ToRole="TeacherSubject" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="TeacherCode" />
+          </Key>
+          <Property Name="TeacherCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TeacherName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PulpitCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Pulpit" Relationship="Self.TEACHER_PULPIT_FK" FromRole="Teacher" ToRole="Pulpit" />
+          <NavigationProperty Name="TeacherSubjects" Relationship="Self.FK__TeacherSu__Teach__59FA5E80" FromRole="Teacher" ToRole="TeacherSubject" />
+        </EntityType>
+        <EntityType Name="TeacherSubject">
+          <Key>
+            <PropertyRef Name="TeacherCode" />
+            <PropertyRef Name="SubjectCode" />
+            <PropertyRef Name="Course" />
+          </Key>
+          <Property Name="TeacherCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubjectCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Course" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK__TeacherSu__Subje__5AEE82B9" FromRole="TeacherSubject" ToRole="Subject" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK__TeacherSu__Teach__59FA5E80" FromRole="TeacherSubject" ToRole="Teacher" />
+        </EntityType>
+        <Association Name="FK_USER_STUDENT">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Authorizations" Type="Self.Authorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Authorizations">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PULPIT_FACULTY">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="FacultyCode" />
+            </Principal>
+            <Dependent Role="Pulpit">
+              <PropertyRef Name="FacultyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GROUP_FACULTY_FK">
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty">
+              <PropertyRef Name="FacultyCode" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="FacultyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GROUP_SPECIALITY_FK">
+          <End Role="Specialty" Type="Self.Specialty" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialty">
+              <PropertyRef Name="SpecialtyCode" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="SpecialtyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STUDENT_GROUP_FK">
+          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SPECIALITY_PULPIT">
+          <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="0..1" />
+          <End Role="Specialty" Type="Self.Specialty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pulpit">
+              <PropertyRef Name="PulpitCode" />
+            </Principal>
+            <Dependent Role="Specialty">
+              <PropertyRef Name="PulpitCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SUBJECT_PULPIT_FK">
+          <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="0..1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pulpit">
+              <PropertyRef Name="PulpitCode" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="PulpitCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TEACHER_PULPIT_FK">
+          <End Role="Pulpit" Type="Self.Pulpit" Multiplicity="0..1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pulpit">
+              <PropertyRef Name="PulpitCode" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="PulpitCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TeacherSu__Subje__5AEE82B9">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="TeacherSubject" Type="Self.TeacherSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectCode" />
+            </Principal>
+            <Dependent Role="TeacherSubject">
+              <PropertyRef Name="SubjectCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TeacherSu__Teach__59FA5E80">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="TeacherSubject" Type="Self.TeacherSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherCode" />
+            </Principal>
+            <Dependent Role="TeacherSubject">
+              <PropertyRef Name="TeacherCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FileCabinetContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authorizations" EntityType="Self.Authorization" />
+          <EntitySet Name="Faculties" EntityType="Self.Faculty" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="Pulpits" EntityType="Self.Pulpit" />
+          <EntitySet Name="Specialties" EntityType="Self.Specialty" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <EntitySet Name="TeacherSubjects" EntityType="Self.TeacherSubject" />
+          <AssociationSet Name="FK_USER_STUDENT" Association="Self.FK_USER_STUDENT">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Authorizations" EntitySet="Authorizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PULPIT_FACULTY" Association="Self.FK_PULPIT_FACULTY">
+            <End Role="Faculty" EntitySet="Faculties" />
+            <End Role="Pulpit" EntitySet="Pulpits" />
+          </AssociationSet>
+          <AssociationSet Name="GROUP_FACULTY_FK" Association="Self.GROUP_FACULTY_FK">
+            <End Role="Faculty" EntitySet="Faculties" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="GROUP_SPECIALITY_FK" Association="Self.GROUP_SPECIALITY_FK">
+            <End Role="Specialty" EntitySet="Specialties" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="STUDENT_GROUP_FK" Association="Self.STUDENT_GROUP_FK">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SPECIALITY_PULPIT" Association="Self.FK_SPECIALITY_PULPIT">
+            <End Role="Pulpit" EntitySet="Pulpits" />
+            <End Role="Specialty" EntitySet="Specialties" />
+          </AssociationSet>
+          <AssociationSet Name="SUBJECT_PULPIT_FK" Association="Self.SUBJECT_PULPIT_FK">
+            <End Role="Pulpit" EntitySet="Pulpits" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="TEACHER_PULPIT_FK" Association="Self.TEACHER_PULPIT_FK">
+            <End Role="Pulpit" EntitySet="Pulpits" />
+            <End Role="Teacher" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TeacherSu__Subje__5AEE82B9" Association="Self.FK__TeacherSu__Subje__5AEE82B9">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="TeacherSubject" EntitySet="TeacherSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TeacherSu__Teach__59FA5E80" Association="Self.FK__TeacherSu__Teach__59FA5E80">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="TeacherSubject" EntitySet="TeacherSubjects" />
+          </AssociationSet>
+          <FunctionImport Name="GetStudentsOfGroup" ReturnType="Collection(BSTU.FileCabinet.Domain.Models.GetStudentsOfGroup_Result)">
+            <Parameter Name="GroupId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSubjectsOfStudent" ReturnType="Collection(BSTU.FileCabinet.Domain.Models.GetSubjectsOfStudent_Result)">
+            <Parameter Name="StudentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetStudentsOfGroup_Result">
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="Int32" Name="GroupId" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Patronymic" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="Birthday" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="15" />
+          <Property Type="Binary" Name="Foto" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetSubjectsOfStudent_Result">
+          <Property Type="String" Name="TeacherCode" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SubjectCode" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PulpitCode" Nullable="true" MaxLength="10" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BSTUFileCabinetDomainModelsContainer" CdmEntityContainer="FileCabinetContext">
+          <EntitySetMapping Name="Authorizations">
+            <EntityTypeMapping TypeName="BSTU.FileCabinet.Domain.Models.Authorization">
+              <MappingFragment StoreEntitySet="Authorizations">
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faculties">
+            <EntityTypeMapping TypeName="BSTU.FileCabinet.Domain.Models.Faculty">
+              <MappingFragment StoreEntitySet="Faculty">
+                <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="BSTU.FileCabinet.Domain.Models.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+                <ScalarProperty Name="SpecialtyCode" ColumnName="SpecialtyCode" />
+                <ScalarProperty Name="GroupNumber" ColumnName="GroupNumber" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pulpits">
+            <EntityTypeMapping TypeName="BSTU.FileCabinet.Domain.Models.Pulpit">
+              <MappingFragment StoreEntitySet="Pulpit">
+                <ScalarProperty Name="PulpitCode" ColumnName="PulpitCode" />
+                <ScalarProperty Name="PulpitName" ColumnName="PulpitName" />
+                <ScalarProperty Name="FacultyCode" ColumnName="FacultyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialties">
+            <EntityTypeMapping TypeName="BSTU.FileCabinet.Domain.Models.Specialty">
+              <MappingFragment StoreEntitySet="Specialty">
+                <ScalarProperty Name="SpecialtyCode" ColumnName="SpecialtyCode" />
+                <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+                <ScalarProperty Name="PulpitCode" ColumnName="PulpitCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="BSTU.FileCabinet.Domain.Models.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="BSTU.FileCabinet.Domain.Models.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="PulpitCode" ColumnName="PulpitCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="BSTU.FileCabinet.Domain.Models.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="TeacherCode" ColumnName="TeacherCode" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="PulpitCode" ColumnName="PulpitCode" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherSubjects">
+            <EntityTypeMapping TypeName="BSTU.FileCabinet.Domain.Models.TeacherSubject">
+              <MappingFragment StoreEntitySet="TeacherSubject">
+                <ScalarProperty Name="TeacherCode" ColumnName="TeacherCode" />
+                <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetStudentsOfGroup" FunctionName="Хранилище BSTU.FileCabinet.Domain.Models.GetStudentsOfGroup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BSTU.FileCabinet.Domain.Models.GetStudentsOfGroup_Result">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSubjectsOfStudent" FunctionName="Хранилище BSTU.FileCabinet.Domain.Models.GetSubjectsOfStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BSTU.FileCabinet.Domain.Models.GetSubjectsOfStudent_Result">
+                <ScalarProperty Name="TeacherCode" ColumnName="TeacherCode" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="PulpitCode" ColumnName="PulpitCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
