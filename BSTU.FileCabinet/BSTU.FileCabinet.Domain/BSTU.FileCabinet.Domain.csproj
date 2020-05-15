@@ -50,15 +50,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Authorization.cs">
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Faculty.cs">
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\FileCabinetModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FileCabinetModel.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FileCabinetModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\FileCabinetModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FileCabinetModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentsOfGroup.cs">
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubjectsOfStudent.cs">
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Group.cs">
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pulpit.cs">
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Specialty.cs">
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Student.cs">
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Subject.cs">
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Teacher.cs">
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TeacherSubject.cs">
+      <DependentUpon>FileCabinetModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +117,12 @@
     <Content Include="Models\FileCabinetModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FileCabinetModel.Context.cs</LastGenOutput>
+      <DependentUpon>FileCabinetModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\FileCabinetModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FileCabinetModel.edmx</DependentUpon>
+      <LastGenOutput>FileCabinetModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
