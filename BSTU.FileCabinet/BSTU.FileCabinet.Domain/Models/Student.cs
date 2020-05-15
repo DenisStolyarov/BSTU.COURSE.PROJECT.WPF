@@ -16,7 +16,7 @@ namespace BSTU.FileCabinet.Domain.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Patronymic { get; set; }
-        public Nullable<System.DateTime> Birthday { get; set; }
+        public Nullable<DateTime> Birthday { get; set; }
         public string PhoneNumber { get; set; }
         public byte[] Foto { get; set; }
     

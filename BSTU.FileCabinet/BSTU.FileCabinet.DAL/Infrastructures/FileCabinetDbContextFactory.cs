@@ -5,7 +5,7 @@ namespace BSTU.FileCabinet.DAL.Infrastructures
 {
     public class FileCabinetDbContextFactory : IDbContextFactory<FileCabinetContext>
     {
-        public FileCabinetContext CreateDbContext(string[] args = null)
+        public FileCabinetContext CreateDbContext()
         {
             return new FileCabinetContext();
         }

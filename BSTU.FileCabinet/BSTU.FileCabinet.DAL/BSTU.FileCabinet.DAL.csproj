@@ -119,12 +119,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructures\FileCabinetDbContextFactory.cs" />
+    <Compile Include="Interfaces\IDbContextFactory.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Common\AuthorizationRepository.cs" />
+    <Compile Include="Repositories\Common\FacultyRepository.cs" />
+    <Compile Include="Repositories\Common\GroupRepository.cs" />
+    <Compile Include="Repositories\Common\PulpitRepository.cs" />
+    <Compile Include="Repositories\Common\SpecialtyRepository.cs" />
+    <Compile Include="Repositories\Common\StudentRepository.cs" />
+    <Compile Include="Repositories\Common\SubjectRepository.cs" />
+    <Compile Include="Repositories\Common\TeacherRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BSTU.FileCabinet.Domain\BSTU.FileCabinet.Domain.csproj">
       <Project>{01f268cb-ca6f-4ed6-b603-3d5543c22e38}</Project>
