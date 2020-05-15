@@ -1,13 +1,9 @@
-﻿using BSTU.FileCabinet.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BSTU.FileCabinet.DAL.Repositories.Common;
+using BSTU.FileCabinet.Domain.Models;
 
 namespace BSTU.FileCabinet.DAL.Interfaces
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         IRepository<Authorization, string> Authorizations { get; }
         IRepository<Faculty, string> Faculties { get; }
@@ -17,7 +13,6 @@ namespace BSTU.FileCabinet.DAL.Interfaces
         IRepository<Student, int> Students { get; }
         IRepository<Subject, string> Subjects { get; }
         IRepository<Teacher, string> Teachers { get; }
-        IRepository<TeacherSubject, string> TeacherSubjects { get; }
-
+        TeacherSubjectRepository TeacherSubjects { get; }
     }
 }
