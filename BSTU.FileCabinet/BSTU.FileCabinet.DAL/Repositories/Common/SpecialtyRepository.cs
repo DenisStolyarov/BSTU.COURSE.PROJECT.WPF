@@ -3,6 +3,7 @@ using BSTU.FileCabinet.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace BSTU.FileCabinet.DAL.Repositories.Common
 {
@@ -47,7 +48,7 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                return context.Specialties.FirstOrDefault(i => i.SpecialtyCode.Equals(id));
+                return context.Specialties.Include(i => i.Pulpit).FirstOrDefault(i => i.SpecialtyCode.Equals(id));
             }
         }
 
@@ -55,7 +56,7 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                return context.Specialties.ToArray();
+                return context.Specialties.Include(i => i.Pulpit).ToArray();
             }
         }
 
@@ -63,11 +64,10 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                var item = context.Specialties.FirstOrDefault(i => i.SpecialtyCode.Equals(id));
+                var item = context.Specialties.Include(i => i.Pulpit).FirstOrDefault(i => i.SpecialtyCode.Equals(id));
                 if (item != null)
                 {
                     item.PulpitCode = entity.PulpitCode ?? item.PulpitCode;
-                    item.Pulpit = entity.Pulpit ?? item.Pulpit;
                     item.SpecialtyName = entity.SpecialtyName ?? item.SpecialtyName;
                     context.SaveChanges();
                     return true;

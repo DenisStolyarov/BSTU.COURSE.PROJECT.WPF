@@ -3,8 +3,7 @@ using BSTU.FileCabinet.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace BSTU.FileCabinet.DAL.Repositories.Common
 {
@@ -49,7 +48,10 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                return context.Groups.FirstOrDefault(i => i.GroupId.Equals(id));
+                return context.Groups
+                    .Include(i => i.Faculty)
+                    .Include(i => i.Specialty)
+                    .FirstOrDefault(i => i.GroupId.Equals(id));
             }
         }
 
@@ -57,7 +59,10 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                return context.Groups.ToArray();
+                return context.Groups
+                    .Include(i => i.Faculty)
+                    .Include(i => i.Specialty)
+                    .ToArray();
             }
         }
 
@@ -65,14 +70,15 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                var item = context.Groups.FirstOrDefault(i => i.GroupId.Equals(id));
+                var item = context.Groups
+                    .Include(i => i.Faculty)
+                    .Include(i => i.Specialty)
+                    .FirstOrDefault(i => i.GroupId.Equals(id));
                 if (item != null)
                 {
                     item.Course = entity.Course ?? item.Course;
-                    item.Faculty = entity.Faculty ?? item.Faculty;
                     item.FacultyCode = entity.FacultyCode ?? item.FacultyCode;
                     item.GroupNumber = entity.GroupNumber ?? item.GroupNumber;
-                    item.Specialty = entity.Specialty ?? item.Specialty;
                     item.SpecialtyCode = entity.SpecialtyCode ?? item.SpecialtyCode;
                     context.SaveChanges();
                     return true;

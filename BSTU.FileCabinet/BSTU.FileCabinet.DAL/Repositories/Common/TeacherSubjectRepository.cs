@@ -3,6 +3,7 @@ using BSTU.FileCabinet.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace BSTU.FileCabinet.DAL.Repositories.Common
 {

@@ -3,6 +3,7 @@ using BSTU.FileCabinet.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace BSTU.FileCabinet.DAL.Repositories.Common
 {
@@ -47,7 +48,7 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                return context.Students.FirstOrDefault(i => i.StudentId.Equals(id));
+                return context.Students.Include(i => i.Group).FirstOrDefault(i => i.StudentId.Equals(id));
             }
         }
 
@@ -55,7 +56,7 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                return context.Students.ToArray();
+                return context.Students.Include(i => i.Group).ToArray();
             }
         }
 
@@ -63,13 +64,12 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                var item = context.Students.FirstOrDefault(i => i.StudentId.Equals(id));
+                var item = context.Students.Include(i => i.Group).FirstOrDefault(i => i.StudentId.Equals(id));
                 if (item != null)
                 {
                     item.Birthday = entity.Birthday ?? item.Birthday;
                     item.FirstName = entity.FirstName ?? item.FirstName;
                     item.Foto = entity.Foto ?? item.Foto;
-                    item.Group = entity.Group ?? item.Group;
                     item.GroupId = entity.GroupId ?? item.GroupId;
                     item.LastName = entity.LastName ?? item.LastName;
                     item.Patronymic = entity.Patronymic ?? item.Patronymic;

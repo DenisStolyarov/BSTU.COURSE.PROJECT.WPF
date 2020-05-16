@@ -3,6 +3,7 @@ using BSTU.FileCabinet.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 
 namespace BSTU.FileCabinet.DAL.Repositories.Common
@@ -48,7 +49,7 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                return context.Authorizations.FirstOrDefault(i => i.Login.Equals(id));
+                return context.Authorizations.Include(i => i.Student).FirstOrDefault(i => i.Login.Equals(id));
             }
         }
 
@@ -56,7 +57,7 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                return context.Authorizations.ToArray();
+                return context.Authorizations.Include(i => i.Student).ToArray();
             }
         }
 
@@ -64,14 +65,11 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                var item = context.Authorizations.FirstOrDefault(i => i.Login.Equals(id));
+                var item = context.Authorizations.Include(i => i.Student).FirstOrDefault(i => i.Login.Equals(id));
                 if (item != null)
                 {
-                    item.Login = entity.Login;
-                    item.Password = entity.Password;
                     item.Role = entity.Role;
                     item.UserId = entity.UserId ?? item.UserId;
-                    item.Student = entity.Student ?? item.Student;
                     context.SaveChanges();
                     return true;
                 }

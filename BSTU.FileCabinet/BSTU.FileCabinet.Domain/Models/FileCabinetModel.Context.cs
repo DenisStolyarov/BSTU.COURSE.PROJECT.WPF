@@ -28,7 +28,6 @@
             var groupIdParameter = groupId.HasValue ?
                 new ObjectParameter("GroupId", groupId) :
                 new ObjectParameter("GroupId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<StudentsOfGroup>("GetStudentsOfGroup", groupIdParameter);
         }
     

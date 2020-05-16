@@ -121,6 +121,7 @@
     <Compile Include="Infrastructures\FileCabinetDbContextFactory.cs" />
     <Compile Include="Interfaces\IDbContextFactory.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Common\AuthorizationRepository.cs" />
     <Compile Include="Repositories\Common\FacultyRepository.cs" />
@@ -130,6 +131,8 @@
     <Compile Include="Repositories\Common\StudentRepository.cs" />
     <Compile Include="Repositories\Common\SubjectRepository.cs" />
     <Compile Include="Repositories\Common\TeacherRepository.cs" />
+    <Compile Include="Repositories\Common\TeacherSubjectRepository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
