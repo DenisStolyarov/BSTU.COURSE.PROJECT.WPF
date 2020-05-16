@@ -12,6 +12,6 @@
             <ColumnDefinition Width="0.2*"/>
             <ColumnDefinition Width="0.8*"/>
         </Grid.ColumnDefinitions>
-        <control:AdminNavigationBar Grid.Column="0"/>
+        <control:AdminNavigationBar Grid.Column="0" DataContext="{Binding Navigator}"/>
     </Grid>
 </Window>
