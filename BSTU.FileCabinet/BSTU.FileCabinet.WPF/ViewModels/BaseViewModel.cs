@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace BSTU.FileCabinet.WPF.ViewModels
 {
-    public class MainViewModel : BaseViewModel
+    public abstract class BaseViewModel
     {
-
     }
 }
