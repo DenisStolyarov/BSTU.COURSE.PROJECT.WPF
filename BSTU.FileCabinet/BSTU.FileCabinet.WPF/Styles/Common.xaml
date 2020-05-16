@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BSTU.FileCabinet.WPF.Styles">
+    <!--Colors-->
+    <Color x:Key="BackgroundDefaultColor">#799540</Color>
+    
+    <!--Brushes-->
+    <SolidColorBrush x:Key="BackgroundDefaultBrush" Color="{StaticResource BackgroundDefaultColor}"/>
+
+    <!--TextBoxes-->
+    
+    <!--Buttons-->
+    
+</ResourceDictionary>
