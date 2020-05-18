@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\UpdateCurrentViewModelCommand.cs" />
     <Compile Include="Controls\AdminNavigationBar.xaml.cs">
       <DependentUpon>AdminNavigationBar.xaml</DependentUpon>

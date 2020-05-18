@@ -22,7 +22,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels.Factories
             switch (view)
             {
                 case ViewType.Authorization:
-                    return new AuthorizationViewModel();
+                    return new AuthorizationViewModel(unitOfWork.Authorizations);
                 case ViewType.Faculty:
                     return new FacultyViewModel();
                 default:
