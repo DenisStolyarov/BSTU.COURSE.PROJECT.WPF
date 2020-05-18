@@ -13,5 +13,6 @@
             <ColumnDefinition Width="0.8*"/>
         </Grid.ColumnDefinitions>
         <control:AdminNavigationBar Grid.Column="0" DataContext="{Binding Navigator}"/>
+        <ContentControl Grid.Column="1" Content="{Binding Navigator.CurrentViewModel}"/>
     </Grid>
 </Window>

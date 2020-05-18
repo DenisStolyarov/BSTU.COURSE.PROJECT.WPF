@@ -1,12 +1,22 @@
 ﻿<Application x:Class="BSTU.FileCabinet.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:view_models="clr-namespace:BSTU.FileCabinet.WPF.ViewModels"
+             xmlns:views="clr-namespace:BSTU.FileCabinet.WPF.Views"
              xmlns:local="clr-namespace:BSTU.FileCabinet.WPF">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/Common.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type view_models:AuthorizationViewModel}">
+                <views:AuthorizationView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type view_models:FacultyViewModel}">
+                <views:FacultyView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
