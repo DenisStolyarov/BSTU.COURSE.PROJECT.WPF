@@ -7,6 +7,40 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="29*"/>
+                <ColumnDefinition Width="21*"/>
+            </Grid.ColumnDefinitions>
+            <ListView ItemsSource="{Binding Groups}" 
+                  SelectedItem="{Binding SelectedValue}" 
+                  Grid.Column="0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=GroupId}">Id</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Course}">Course</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FacultyCode}">FacultyCode</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=GroupNumber}">GroupNumber</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=SpecialtyCode}">SpecialtyCode</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Grid Grid.Column="1">
+                <StackPanel  
+                    DataContext="{Binding SelectedValue}"
+                    VerticalAlignment="Center">
+                    <TextBox Text="{Binding GroupId}"/>
+                    <TextBox Text="{Binding Course}"/>
+                    <TextBox Text="{Binding FacultyCode}"/>
+                    <TextBox Text="{Binding GroupNumber}"/>
+                    <TextBox Text="{Binding SpecialtyCode}"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Bottom">
+                    <Button Command="{Binding Create}" Content="Create"/>
+                    <Button Command="{Binding Update}" Content="Update"/>
+                    <Button Command="{Binding Delete}" Content="Delete"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

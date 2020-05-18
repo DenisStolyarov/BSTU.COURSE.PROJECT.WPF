@@ -7,6 +7,44 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="277*"/>
+            <ColumnDefinition Width="523*"/>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding Students}" 
+                  SelectedItem="{Binding SelectedValue}" 
+                  Grid.Column="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=StudentId}">Id</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=GroupId}">GroupId</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}">FirstName</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}">LastName</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Patronymic}">Patronymic</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=PhoneNumber}">PhoneNumber</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Birthday}">Birthday</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Foto}">Foto</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Column="1">
+            <StackPanel  
+                    DataContext="{Binding SelectedValue}"
+                    VerticalAlignment="Center">
+                <TextBox Text="{Binding StudentId}"/>
+                <TextBox Text="{Binding GroupId}"/>
+                <TextBox Text="{Binding FirstName}"/>
+                <TextBox Text="{Binding LastName}"/>
+                <TextBox Text="{Binding Patronymic}"/>
+                <TextBox Text="{Binding PhoneNumber}"/>
+                <TextBox Text="{Binding Birthday}"/>
+                <TextBox Text="{Binding Foto}"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Bottom">
+                <Button Command="{Binding Create}" Content="Create"/>
+                <Button Command="{Binding Update}" Content="Update"/>
+                <Button Command="{Binding Delete}" Content="Delete"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

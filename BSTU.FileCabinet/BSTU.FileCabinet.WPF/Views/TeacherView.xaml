@@ -7,6 +7,36 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="277*"/>
+            <ColumnDefinition Width="523*"/>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding Teachers}" 
+                  SelectedItem="{Binding SelectedValue}" 
+                  Grid.Column="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TeacherCode}">TeacherCode</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TeacherName}">TeacherName</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=PulpitCode}">PulpitCode</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Foto}">Foto</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Column="1">
+            <StackPanel  
+                    DataContext="{Binding SelectedValue}"
+                    VerticalAlignment="Center">
+                <TextBox Text="{Binding TeacherCode}"/>
+                <TextBox Text="{Binding TeacherName}"/>
+                <TextBox Text="{Binding PulpitCode}"/>
+                <TextBox Text="{Binding Foto}"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Bottom">
+                <Button Command="{Binding Create}" Content="Create"/>
+                <Button Command="{Binding Update}" Content="Update"/>
+                <Button Command="{Binding Delete}" Content="Delete"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>
