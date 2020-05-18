@@ -81,7 +81,14 @@
     <Compile Include="ViewModels\Factories\ISimpleViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\SimpleViewModelFactory.cs" />
     <Compile Include="ViewModels\FacultyViewModel.cs" />
+    <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PulpitViewModel.cs" />
+    <Compile Include="ViewModels\SpecialtyViewModel.cs" />
+    <Compile Include="ViewModels\StudentViewModel.cs" />
+    <Compile Include="ViewModels\SubjectViewModel.cs" />
+    <Compile Include="ViewModels\TeacherSubjectViewModel.cs" />
+    <Compile Include="ViewModels\TeacherViewModel.cs" />
     <Compile Include="Views\AuthorizationView.xaml.cs">
       <DependentUpon>AuthorizationView.xaml</DependentUpon>
     </Compile>
