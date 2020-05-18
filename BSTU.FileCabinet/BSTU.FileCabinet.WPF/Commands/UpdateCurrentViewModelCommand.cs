@@ -34,6 +34,9 @@ namespace BSTU.FileCabinet.WPF.Commands
                 case ViewType.Authorization:
                     navigator.CurrentViewModel = new AuthorizationViewModel();
                     break;
+                case ViewType.Faculty:
+                    navigator.CurrentViewModel = new FacultyViewModel();
+                    break;
                 default:
                     break;
             }

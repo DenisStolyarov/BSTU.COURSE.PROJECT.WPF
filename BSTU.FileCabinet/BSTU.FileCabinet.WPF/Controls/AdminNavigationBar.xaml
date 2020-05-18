@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             <Button Content="Authorization" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Authorization}"></Button>
-            <Button Content="Faculty"></Button>
+            <Button Content="Faculty" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Faculty}"></Button>
             <Button Content="Pulpit"></Button>
             <Button Content="Group"></Button>
             <Button Content="Speciality"></Button>

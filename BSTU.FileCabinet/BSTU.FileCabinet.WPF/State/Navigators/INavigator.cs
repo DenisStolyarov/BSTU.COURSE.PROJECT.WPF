@@ -6,7 +6,7 @@ namespace BSTU.FileCabinet.WPF.State.Navigators
     public enum ViewType
     {
         Authorization,
-        Home,
+        Faculty,
     }
 
     public interface INavigator
