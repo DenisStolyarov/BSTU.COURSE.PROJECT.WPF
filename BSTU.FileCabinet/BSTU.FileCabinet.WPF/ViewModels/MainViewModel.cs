@@ -1,4 +1,5 @@
-﻿using BSTU.FileCabinet.WPF.State.Navigators;
+﻿using BSTU.FileCabinet.DAL.Interfaces;
+using BSTU.FileCabinet.WPF.State.Navigators;
 using BSTU.FileCabinet.WPF.ViewModels.Factories;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,9 @@ namespace BSTU.FileCabinet.WPF.ViewModels
     {
         public INavigator Navigator { get; set; }
 
-        public MainViewModel(INavigator navigator = null)
+        public MainViewModel(INavigator navigator)
         {
-            Navigator = new Navigator(new SimpleViewModelFactory());//navigator;
-
+            this.Navigator = navigator;
             Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Authorization);
         }
     }

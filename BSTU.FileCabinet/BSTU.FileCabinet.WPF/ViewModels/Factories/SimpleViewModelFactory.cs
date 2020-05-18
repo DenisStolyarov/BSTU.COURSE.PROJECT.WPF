@@ -1,4 +1,5 @@
-﻿using BSTU.FileCabinet.WPF.State.Navigators;
+﻿using BSTU.FileCabinet.DAL.Interfaces;
+using BSTU.FileCabinet.WPF.State.Navigators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace BSTU.FileCabinet.WPF.ViewModels.Factories
 {
     public class SimpleViewModelFactory : ISimpleViewModelFactory
     {
+        private readonly IUnitOfWork unitOfWork;
+
+        public SimpleViewModelFactory(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
+
         public BaseViewModel CreateViewModel(ViewType view)
         {
             switch (view)

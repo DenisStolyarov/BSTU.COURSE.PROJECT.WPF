@@ -1,4 +1,10 @@
-﻿using BSTU.FileCabinet.WPF.ViewModels;
+﻿using BSTU.FileCabinet.DAL.Infrastructures;
+using BSTU.FileCabinet.DAL.Interfaces;
+using BSTU.FileCabinet.DAL.Repositories;
+using BSTU.FileCabinet.Domain.Models;
+using BSTU.FileCabinet.WPF.State.Navigators;
+using BSTU.FileCabinet.WPF.ViewModels;
+using BSTU.FileCabinet.WPF.ViewModels.Factories;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,7 +23,11 @@ namespace BSTU.FileCabinet.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             Window window = new MainWindow();
-            window.DataContext = new MainViewModel();
+            IDbContextFactory<FileCabinetContext> dbContextFactory = new FileCabinetDbContextFactory();
+            IUnitOfWork unitOfWork = new UnitOfWork(dbContextFactory);
+            ISimpleViewModelFactory simpleViewModelFactory = new SimpleViewModelFactory(unitOfWork);
+            INavigator navigator = new Navigator(simpleViewModelFactory);
+            window.DataContext = new MainViewModel(navigator);
             window.Show();
 
             base.OnStartup(e);  
