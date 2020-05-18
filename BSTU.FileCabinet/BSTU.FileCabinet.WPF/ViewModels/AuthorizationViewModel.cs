@@ -8,5 +8,9 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 {
     public class AuthorizationViewModel : BaseViewModel
     {
+        public AuthorizationViewModel()
+        {
+
+        }
     }
 }

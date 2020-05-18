@@ -1,5 +1,6 @@
 ﻿using BSTU.FileCabinet.WPF.State.Navigators;
 using BSTU.FileCabinet.WPF.ViewModels;
+using BSTU.FileCabinet.WPF.ViewModels.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace BSTU.FileCabinet.WPF.Commands
         public event EventHandler CanExecuteChanged;
 
         private readonly INavigator navigator;
+        private readonly ISimpleViewModelFactory viewModelFactory;
 
-        public UpdateCurrentViewModelCommand(INavigator navigator)
+        public UpdateCurrentViewModelCommand(INavigator navigator, ISimpleViewModelFactory viewModelFactory)
         {
             this.navigator = navigator;
+            this.viewModelFactory = viewModelFactory;
         }
 
         public bool CanExecute(object parameter)
@@ -28,18 +31,8 @@ namespace BSTU.FileCabinet.WPF.Commands
 
         public void Execute(object parameter)
         {
-            var a = (ViewType)parameter;
-            switch (a)
-            {
-                case ViewType.Authorization:
-                    navigator.CurrentViewModel = new AuthorizationViewModel();
-                    break;
-                case ViewType.Faculty:
-                    navigator.CurrentViewModel = new FacultyViewModel();
-                    break;
-                default:
-                    break;
-            }
+            var view = (ViewType)parameter;
+            this.navigator.CurrentViewModel = viewModelFactory.CreateViewModel(view);
         }
     }
 }

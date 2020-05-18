@@ -69,6 +69,8 @@
     <Compile Include="State\Navigators\Navigator.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Factories\ISimpleViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\SimpleViewModelFactory.cs" />
     <Compile Include="ViewModels\FacultyViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\AuthorizationView.xaml.cs">
