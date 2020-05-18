@@ -11,13 +11,13 @@
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             <Button Content="Authorization" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Authorization}"></Button>
             <Button Content="Faculty" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Faculty}"></Button>
-            <Button Content="Pulpit"></Button>
-            <Button Content="Group"></Button>
-            <Button Content="Speciality"></Button>
-            <Button Content="Student"></Button>
-            <Button Content="Subject"></Button>
-            <Button Content="Teacher"></Button>
-            <Button Content="TeacherSubject"></Button>
+            <Button Content="Group" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Group}"></Button>
+            <Button Content="Pulpit" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Pulpit}"></Button>
+            <Button Content="Speciality" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Speciality}"></Button>
+            <Button Content="Student" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Student}"></Button>
+            <Button Content="Subject" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Subject}"></Button>
+            <Button Content="Teacher" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Teacher}"></Button>
+            <Button Content="TeacherSubject" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.TeacherSubject}"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

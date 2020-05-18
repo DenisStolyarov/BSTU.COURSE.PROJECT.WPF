@@ -7,6 +7,13 @@ namespace BSTU.FileCabinet.WPF.State.Navigators
     {
         Authorization,
         Faculty,
+        Group,
+        Pulpit,
+        Speciality,
+        Student,
+        Subject,
+        TeacherSubject,
+        Teacher,
     }
 
     public interface INavigator
