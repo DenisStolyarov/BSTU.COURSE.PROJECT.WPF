@@ -16,10 +16,10 @@
                   Grid.Column="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Login}">a</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Password}">b</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Role}">c</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=UserId}">d</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Login}">Login</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Password}">Password</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Role}">Role</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=UserId}">UserId</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
