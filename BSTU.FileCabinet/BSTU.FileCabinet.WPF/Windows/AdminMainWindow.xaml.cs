@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BSTU.FileCabinet.WPF
+namespace BSTU.FileCabinet.WPF.Windows
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AdminMainWindow : Window
     {
-        public MainWindow()
+        public AdminMainWindow()
         {
             InitializeComponent();
         }
