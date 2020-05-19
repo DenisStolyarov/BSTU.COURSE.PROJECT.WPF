@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace BSTU.FileCabinet.WPF.ViewModels
 {
-    public class MainViewModel : BaseViewModel
+    public class AdminMainViewModel : BaseViewModel
     {
         public INavigator Navigator { get; set; }
 
-        public MainViewModel(INavigator navigator)
+        public AdminMainViewModel(INavigator navigator)
         {
             this.Navigator = navigator;
             Navigator.UpdateCurrentViewModelCommand.Execute(ViewType.Authorization);

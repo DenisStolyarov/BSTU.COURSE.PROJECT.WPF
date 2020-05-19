@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BSTU.FileCabinet.DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,40 @@ namespace BSTU.FileCabinet.WPF.Windows
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
-        public AuthorizationWindow()
+        private readonly Window window;
+        private readonly IUnitOfWork unitOfWork;
+
+        public AuthorizationWindow(Window window, IUnitOfWork unitOfWork)
         {
+            this.window = window ?? throw new NullReferenceException();
+            this.unitOfWork = unitOfWork ?? throw new NullReferenceException();
+
             InitializeComponent();
+        }
+
+        private void CloseButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void LoginButtonClick(object sender, RoutedEventArgs e)
+        {
+            var login = this.Login.Text;
+            var password = this.Password.Password;
+            var user = this.unitOfWork.Authorizations.Get(login);
+
+            if (user is null)
+            {
+                MessageBox.Show("No user!");
+            }
+
+            if (!user.Password.Equals(password))
+            {
+                MessageBox.Show("Wrong user or password!");
+            }
+
+            this.window.Show();
+            this.Close();
         }
     }
 }

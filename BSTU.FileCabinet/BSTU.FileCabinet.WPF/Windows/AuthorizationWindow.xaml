@@ -31,7 +31,7 @@
                         Foreground="White"
                         Opacity="0.6"
                         Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                        ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                        ToolTip="MaterialDesignFloatingActionMiniLightButton" Click="CloseButtonClick">
                 <materialDesign:PackIcon
                         Kind="CloseOctagonOutline"
                         Height="24"
@@ -62,10 +62,10 @@
                 <TextBox Style="{StaticResource TextBoxLoginStyle}"
                          materialDesign:TextFieldAssist.UnderlineBrush="{x:Null}"
                          HorizontalAlignment="Center"
-                         Text="Username"
                          Width="250"
-                         HorizontalContentAlignment="Center"/>
-                <materialDesign:PackIcon Kind="Account"
+                         HorizontalContentAlignment="Center"
+                         x:Name="Login"/>
+                <materialDesign:PackIcon Kind="AccountCircle"
                                              VerticalAlignment="Center" 
                                              HorizontalAlignment="Center" 
                                              Foreground="White"
@@ -81,13 +81,13 @@
             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
 
                 <PasswordBox Style="{StaticResource PasswordBoxLoginStyle}"
-                                 materialDesign:TextFieldAssist.UnderlineBrush="{x:Null}"
-                                 Password="Password"
-                                 HorizontalAlignment="Center"
-                                 HorizontalContentAlignment="Center"
-                                 Width="250"/>
+                             materialDesign:TextFieldAssist.UnderlineBrush="{x:Null}"
+                             HorizontalAlignment="Center"
+                             HorizontalContentAlignment="Center"
+                             Width="250"
+                             x:Name="Password"/>
 
-                <materialDesign:PackIcon Kind="Onepassword" 
+                <materialDesign:PackIcon Kind="LockQuestion" 
                                              VerticalAlignment="Center" 
                                              HorizontalAlignment="Center" 
                                              Foreground="White"
@@ -107,7 +107,7 @@
                             Height="35"
                             FontSize="20"
                             Content="Login"
-                            Margin="50">
+                            Margin="50" Click="LoginButtonClick">
                 </Button>
             </StackPanel>
 

@@ -88,7 +88,7 @@
     <Compile Include="ViewModels\Factories\SimpleViewModelFactory.cs" />
     <Compile Include="ViewModels\FacultyViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\AdminMainViewModel.cs" />
     <Compile Include="ViewModels\PulpitViewModel.cs" />
     <Compile Include="ViewModels\SpecialtyViewModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />

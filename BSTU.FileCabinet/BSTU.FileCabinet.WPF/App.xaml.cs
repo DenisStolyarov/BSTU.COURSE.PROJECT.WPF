@@ -24,12 +24,12 @@ namespace BSTU.FileCabinet.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             Window window = new AdminMainWindow();
-            Window authorization = new AuthorizationWindow();
             IDbContextFactory<FileCabinetContext> dbContextFactory = new FileCabinetDbContextFactory();
             IUnitOfWork unitOfWork = new UnitOfWork(dbContextFactory);
             ISimpleViewModelFactory simpleViewModelFactory = new SimpleViewModelFactory(unitOfWork);
             INavigator navigator = new Navigator(simpleViewModelFactory);
-            window.DataContext = new MainViewModel(navigator);
+            window.DataContext = new AdminMainViewModel(navigator);
+            Window authorization = new AuthorizationWindow(window, unitOfWork);
             authorization.Show();
 
             base.OnStartup(e);  
