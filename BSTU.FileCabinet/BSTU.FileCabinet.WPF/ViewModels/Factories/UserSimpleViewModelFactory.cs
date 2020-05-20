@@ -23,7 +23,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels.Factories
             switch (view)
             {
                 case ViewType.Home:
-                    return new UserHomeViewModel();
+                    return new UserHomeViewModel(unitOfWork);
                 case ViewType.UserGroup:
                     return new UserGroupViewModel();
                 case ViewType.UserSubject:

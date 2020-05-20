@@ -7,6 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>Home</TextBlock>
+        <StackPanel DataContext="{Binding CurrentStudent}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            
+        </StackPanel>
+        <StackPanel  
+                    DataContext="{Binding CurrentStudent}"
+                    VerticalAlignment="Center">
+            <TextBlock Text="{Binding FirstName}"/>
+            <TextBlock Text="{Binding LastName}"/>
+            <TextBlock Text="{Binding Patronymic}"/>
+            <TextBlock Text="{Binding PhoneNumber}"/>
+            <TextBlock Text="{Binding Birthday}"/>
+            <TextBlock Text="{Binding Foto}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
