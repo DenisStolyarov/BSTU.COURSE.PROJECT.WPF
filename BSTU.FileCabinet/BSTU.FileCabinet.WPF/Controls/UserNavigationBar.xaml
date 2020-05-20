@@ -9,9 +9,9 @@
              d:DesignHeight="200" d:DesignWidth="100">
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-            <Button Content="Home" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Authorization}"></Button>
-            <Button Content="Group" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Faculty}"></Button>
-            <Button Content="Subject" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Group}"></Button>
+            <Button Content="Home" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Home}"></Button>
+            <Button Content="Group" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.UserGroup}"></Button>
+            <Button Content="Subject" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.UserSubject}"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

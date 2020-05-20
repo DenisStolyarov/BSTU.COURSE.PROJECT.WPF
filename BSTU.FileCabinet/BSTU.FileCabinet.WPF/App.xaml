@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:view_models="clr-namespace:BSTU.FileCabinet.WPF.ViewModels"
              xmlns:views="clr-namespace:BSTU.FileCabinet.WPF.Views"
+             xmlns:user_view_models="clr-namespace:BSTU.FileCabinet.WPF.ViewModels.User"
+             xmlns:user_views="clr-namespace:BSTU.FileCabinet.WPF.Views.UserViews"
              xmlns:local="clr-namespace:BSTU.FileCabinet.WPF">
     <Application.Resources>
         <ResourceDictionary>
@@ -51,6 +53,21 @@
             <DataTemplate DataType="{x:Type view_models:TeacherViewModel}">
                 <views:TeacherView/>
             </DataTemplate>
+            
+            <!-- User -->
+
+            <DataTemplate DataType="{x:Type user_view_models:UserHomeViewModel}">
+                <user_views:HomeView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type user_view_models:UserGroupViewModel}">
+                <user_views:UserGroupView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type user_view_models:UserSubjectViewModel}">
+                <user_views:UserSubjectView/>
+            </DataTemplate>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

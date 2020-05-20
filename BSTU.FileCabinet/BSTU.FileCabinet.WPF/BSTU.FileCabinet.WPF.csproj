@@ -88,7 +88,8 @@
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Factories\ISimpleViewModelFactory.cs" />
-    <Compile Include="ViewModels\Factories\SimpleViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\AdminSimpleViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\UserSimpleViewModelFactory.cs" />
     <Compile Include="ViewModels\FacultyViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\AdminMainViewModel.cs" />
@@ -98,7 +99,10 @@
     <Compile Include="ViewModels\SubjectViewModel.cs" />
     <Compile Include="ViewModels\TeacherSubjectViewModel.cs" />
     <Compile Include="ViewModels\TeacherViewModel.cs" />
-    <Compile Include="ViewModels\UserMainViewModel.cs" />
+    <Compile Include="ViewModels\User\UserGroupViewModel.cs" />
+    <Compile Include="ViewModels\User\UserHomeViewModel.cs" />
+    <Compile Include="ViewModels\User\UserMainViewModel.cs" />
+    <Compile Include="ViewModels\User\UserSubjectViewModel.cs" />
     <Compile Include="Views\AuthorizationView.xaml.cs">
       <DependentUpon>AuthorizationView.xaml</DependentUpon>
     </Compile>
@@ -126,6 +130,15 @@
     <Compile Include="Views\TeacherView.xaml.cs">
       <DependentUpon>TeacherView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserViews\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserViews\UserGroupView.xaml.cs">
+      <DependentUpon>UserGroupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserViews\UserSubjectView.xaml.cs">
+      <DependentUpon>UserSubjectView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UserMainWindow.xaml.cs">
       <DependentUpon>UserMainWindow.xaml</DependentUpon>
     </Compile>
@@ -138,6 +151,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\AuthorizationWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\UserGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserViews\UserSubjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
