@@ -14,6 +14,9 @@ namespace BSTU.FileCabinet.WPF.State.Navigators
         Subject,
         TeacherSubject,
         Teacher,
+        Home,
+        UserGroup,
+        UserSubject,
     }
 
     public interface INavigator

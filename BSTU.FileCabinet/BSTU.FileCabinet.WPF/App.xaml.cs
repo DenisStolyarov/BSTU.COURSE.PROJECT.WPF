@@ -34,7 +34,7 @@ namespace BSTU.FileCabinet.WPF
             Window window = new AdminMainWindow();
             IDbContextFactory<FileCabinetContext> dbContextFactory = new FileCabinetDbContextFactory();
             IUnitOfWork unitOfWork = new UnitOfWork(dbContextFactory);
-            ISimpleViewModelFactory simpleViewModelFactory = new SimpleViewModelFactory(unitOfWork);
+            ISimpleViewModelFactory simpleViewModelFactory = new AdminSimpleViewModelFactory(unitOfWork);
             INavigator navigator = new Navigator(simpleViewModelFactory);
             window.DataContext = new AdminMainViewModel(navigator);
             Window authorization = new AuthorizationWindow(window, unitOfWork);

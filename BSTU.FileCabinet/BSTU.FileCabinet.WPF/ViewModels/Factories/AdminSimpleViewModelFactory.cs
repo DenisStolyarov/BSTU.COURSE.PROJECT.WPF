@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BSTU.FileCabinet.WPF.ViewModels.Factories
 {
-    public class SimpleViewModelFactory : ISimpleViewModelFactory
+    public class AdminSimpleViewModelFactory : ISimpleViewModelFactory
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public SimpleViewModelFactory(IUnitOfWork unitOfWork)
+        public AdminSimpleViewModelFactory(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }

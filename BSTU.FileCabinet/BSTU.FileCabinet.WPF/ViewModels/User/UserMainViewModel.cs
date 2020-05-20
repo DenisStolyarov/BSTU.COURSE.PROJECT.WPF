@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BSTU.FileCabinet.WPF.ViewModels
+namespace BSTU.FileCabinet.WPF.ViewModels.User
 {
     public class UserMainViewModel : BaseViewModel
     {
