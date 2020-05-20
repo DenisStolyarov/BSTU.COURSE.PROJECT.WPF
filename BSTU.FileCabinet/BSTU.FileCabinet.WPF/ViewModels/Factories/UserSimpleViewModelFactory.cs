@@ -25,7 +25,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels.Factories
                 case ViewType.Home:
                     return new UserHomeViewModel(unitOfWork);
                 case ViewType.UserGroup:
-                    return new UserGroupViewModel();
+                    return new UserGroupViewModel(unitOfWork);
                 case ViewType.UserSubject:
                     return new UserSubjectViewModel();
                 default:

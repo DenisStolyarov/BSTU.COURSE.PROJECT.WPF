@@ -51,6 +51,7 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
                 return context.Groups
                     .Include(i => i.Faculty)
                     .Include(i => i.Specialty)
+                    .Include(i => i.Students)
                     .FirstOrDefault(i => i.GroupId.Equals(id));
             }
         }
