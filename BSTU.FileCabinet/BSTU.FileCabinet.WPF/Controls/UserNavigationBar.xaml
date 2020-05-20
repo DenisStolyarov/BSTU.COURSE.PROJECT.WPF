@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="BSTU.FileCabinet.WPF.Controls.UserNavigationBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BSTU.FileCabinet.WPF.Controls"
+             xmlns:nav="clr-namespace:BSTU.FileCabinet.WPF.State.Navigators"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="100">
+    <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <Button Content="Home" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Authorization}"></Button>
+            <Button Content="Group" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Faculty}"></Button>
+            <Button Content="Subject" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Group}"></Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -80,6 +80,9 @@
     <Compile Include="Controls\AdminNavigationBar.xaml.cs">
       <DependentUpon>AdminNavigationBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserNavigationBar.xaml.cs">
+      <DependentUpon>UserNavigationBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="State\Navigators\INavigator.cs" />
     <Compile Include="State\Navigators\Navigator.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="ViewModels\SubjectViewModel.cs" />
     <Compile Include="ViewModels\TeacherSubjectViewModel.cs" />
     <Compile Include="ViewModels\TeacherViewModel.cs" />
+    <Compile Include="ViewModels\UserMainViewModel.cs" />
     <Compile Include="Views\AuthorizationView.xaml.cs">
       <DependentUpon>AuthorizationView.xaml</DependentUpon>
     </Compile>
@@ -126,6 +130,10 @@
       <DependentUpon>UserMainWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\AdminNavigationBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserNavigationBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
