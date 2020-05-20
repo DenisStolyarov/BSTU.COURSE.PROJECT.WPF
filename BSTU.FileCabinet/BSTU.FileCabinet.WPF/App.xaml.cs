@@ -23,6 +23,14 @@ namespace BSTU.FileCabinet.WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Window window = new UserMainWindow();
+            window.Show();
+
+            base.OnStartup(e);  
+        }
+
+        private void DI()
+        {
             Window window = new AdminMainWindow();
             IDbContextFactory<FileCabinetContext> dbContextFactory = new FileCabinetDbContextFactory();
             IUnitOfWork unitOfWork = new UnitOfWork(dbContextFactory);
@@ -31,8 +39,6 @@ namespace BSTU.FileCabinet.WPF
             window.DataContext = new AdminMainViewModel(navigator);
             Window authorization = new AuthorizationWindow(window, unitOfWork);
             authorization.Show();
-
-            base.OnStartup(e);  
         }
     }
 }
