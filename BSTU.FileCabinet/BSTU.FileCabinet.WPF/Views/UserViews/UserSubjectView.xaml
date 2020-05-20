@@ -7,6 +7,34 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>Subject</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="21*"/>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding Subjects}" 
+                  SelectedItem="{Binding SelectedSubjectsOfStudent}" 
+                  Grid.Column="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectName}">SubjectName</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TeacherName}">TeacherName</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Column="1">
+            <StackPanel  
+                    DataContext="{Binding SelectedTeacher}"
+                    VerticalAlignment="Center">
+                <TextBlock Text="{Binding TeacherName}"/>
+                <TextBlock Text="{Binding Pulpit.PulpitName}"/>
+                <TextBlock Text="{Binding Pulpit.Faculty.FacultyName}"/>
+                <TextBlock Text="{Binding Foto}"/>
+            </StackPanel>
+            <StackPanel  
+                    DataContext="{Binding SelectedSubject}"
+                    VerticalAlignment="Center">
+                <TextBlock Text="{Binding SubjectName}"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

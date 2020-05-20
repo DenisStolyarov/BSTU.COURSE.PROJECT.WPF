@@ -1,6 +1,6 @@
 namespace BSTU.FileCabinet.Domain.Models
 {
-    public partial class SubjectsOfStudent
+    public partial class GetSubjectsOfStudent_Result
     {
         public string TeacherCode { get; set; }
         public string TeacherName { get; set; }

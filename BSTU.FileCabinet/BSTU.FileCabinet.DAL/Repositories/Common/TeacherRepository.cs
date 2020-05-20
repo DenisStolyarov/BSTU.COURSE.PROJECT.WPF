@@ -48,7 +48,7 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
         {
             using (var context = this.contextFactory.CreateDbContext())
             {
-                return context.Teachers.Include(i => i.Pulpit).FirstOrDefault(i => i.TeacherCode.Equals(id));
+                return context.Teachers.Include(i => i.Pulpit).Include(i => i.Pulpit.Faculty).FirstOrDefault(i => i.TeacherCode.Equals(id));
             }
         }
 

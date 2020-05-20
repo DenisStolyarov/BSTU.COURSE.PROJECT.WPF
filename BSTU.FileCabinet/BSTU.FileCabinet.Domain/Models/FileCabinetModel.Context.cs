@@ -31,13 +31,13 @@
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<StudentsOfGroup>("GetStudentsOfGroup", groupIdParameter);
         }
     
-        public virtual ObjectResult<SubjectsOfStudent> GetSubjectsOfStudent(Nullable<int> studentId)
+        public virtual ObjectResult<GetSubjectsOfStudent_Result> GetSubjectsOfStudent(Nullable<int> studentId)
         {
             var studentIdParameter = studentId.HasValue ?
                 new ObjectParameter("StudentId", studentId) :
                 new ObjectParameter("StudentId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubjectsOfStudent>("GetSubjectsOfStudent", studentIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSubjectsOfStudent_Result>("GetSubjectsOfStudent", studentIdParameter);
         }
     }
 }

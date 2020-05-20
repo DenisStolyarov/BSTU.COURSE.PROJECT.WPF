@@ -79,5 +79,13 @@ namespace BSTU.FileCabinet.DAL.Repositories.Common
                 }
             }
         }
+
+        public IEnumerable<GetSubjectsOfStudent_Result> GetSubjectsOfStudent(int StudentId)
+        {
+            using (var context = this.contextFactory.CreateDbContext())
+            {
+                return context.GetSubjectsOfStudent(StudentId).ToArray();
+            }
+        }
     }
 }

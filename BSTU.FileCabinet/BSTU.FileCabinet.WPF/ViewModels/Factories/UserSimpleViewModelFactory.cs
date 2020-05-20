@@ -27,7 +27,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels.Factories
                 case ViewType.UserGroup:
                     return new UserGroupViewModel(unitOfWork);
                 case ViewType.UserSubject:
-                    return new UserSubjectViewModel();
+                    return new UserSubjectViewModel(unitOfWork);
                 default:
                     throw new Exception();
             }
