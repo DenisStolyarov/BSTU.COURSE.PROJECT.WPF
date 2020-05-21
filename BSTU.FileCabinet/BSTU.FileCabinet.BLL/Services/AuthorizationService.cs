@@ -20,10 +20,11 @@ namespace BSTU.FileCabinet.BLL.Services
             this.unitOfWork = unitOfWork ?? throw new NullReferenceException();
         }
 
-        public WindowType GetWindow(string login, string password)
+        public WindowType GetWindowType(string login, string password, out int? id)
         {
+            id = default;
             var user = this.unitOfWork.Authorizations.Get(login);
-
+            
             if (user is null)
             {
                 throw new WrongAuthorizationParameterException("User not found.", nameof(login));
@@ -34,11 +35,17 @@ namespace BSTU.FileCabinet.BLL.Services
                 throw new WrongAuthorizationParameterException("Wrong password.", nameof(password));
             }
 
+            if (user.UserId is null)
+            {
+                throw new WrongAuthorizationParameterException("User information not found.", nameof(password));
+            }
+
             switch (user.Role)
             {
                 case AdminRole:
                     return WindowType.Admin;
                 case UserRole:
+                    id = user.UserId;
                     return WindowType.User;
                 default:
                     throw new ArgumentException();
