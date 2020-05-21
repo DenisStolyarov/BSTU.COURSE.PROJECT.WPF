@@ -15,6 +15,6 @@ namespace BSTU.FileCabinet.BLL.Interfaces
 
     public interface IAuthorizationService
     {
-        WindowType GetWindow(IUnitOfWork unitOfWork, string login, string password);
+        WindowType GetWindow(string login, string password);
     }
 }
