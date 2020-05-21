@@ -7,12 +7,6 @@ using BSTU.FileCabinet.WPF.ViewModels;
 using BSTU.FileCabinet.WPF.ViewModels.Factories;
 using BSTU.FileCabinet.WPF.ViewModels.User;
 using BSTU.FileCabinet.WPF.Windows;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace BSTU.FileCabinet.WPF
@@ -30,7 +24,8 @@ namespace BSTU.FileCabinet.WPF
             ISimpleViewModelFactory simpleViewModelFactory = new UserSimpleViewModelFactory(unitOfWork);
             INavigator navigator = new Navigator(simpleViewModelFactory);
             window.DataContext = new UserMainViewModel(navigator);
-            window.Show();
+            Window authorization = new AuthorizationWindow(window, unitOfWork);
+            authorization.Show();
 
             base.OnStartup(e);  
         }

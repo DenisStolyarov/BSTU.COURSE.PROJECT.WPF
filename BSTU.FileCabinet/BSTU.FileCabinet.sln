@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSTU.FileCabinet.TestReposi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSTU.FileCabinet.WPF", "BSTU.FileCabinet.WPF\BSTU.FileCabinet.WPF.csproj", "{D2D35C48-89D5-4612-B32B-7FC1390D7154}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSTU.FileCabinet.BLL", "BSTU.FileCabinet.BLL\BSTU.FileCabinet.BLL.csproj", "{71E470B9-C7B8-4064-A37F-408CA70503EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{D2D35C48-89D5-4612-B32B-7FC1390D7154}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2D35C48-89D5-4612-B32B-7FC1390D7154}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2D35C48-89D5-4612-B32B-7FC1390D7154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71E470B9-C7B8-4064-A37F-408CA70503EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71E470B9-C7B8-4064-A37F-408CA70503EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71E470B9-C7B8-4064-A37F-408CA70503EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71E470B9-C7B8-4064-A37F-408CA70503EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
