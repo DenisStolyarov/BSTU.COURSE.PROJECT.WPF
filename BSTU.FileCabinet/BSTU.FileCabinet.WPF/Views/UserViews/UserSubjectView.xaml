@@ -22,15 +22,22 @@
             </ListView.View>
         </ListView>
         <Grid Grid.Column="1">
-            <StackPanel  
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0">
+                <Image Source="{Binding SelectedImage}" Width="100"/>
+            </Border>
+            <StackPanel  Grid.Row="1"
                     DataContext="{Binding SelectedTeacher}"
                     VerticalAlignment="Center">
                 <TextBlock Text="{Binding TeacherName}"/>
                 <TextBlock Text="{Binding Pulpit.PulpitName}"/>
                 <TextBlock Text="{Binding Pulpit.Faculty.FacultyName}"/>
-                <TextBlock Text="{Binding Foto}"/>
             </StackPanel>
-            <StackPanel  
+            <StackPanel  Grid.Row="2"
                     DataContext="{Binding SelectedSubject}"
                     VerticalAlignment="Center">
                 <TextBlock Text="{Binding SubjectName}"/>

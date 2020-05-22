@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using BSTU.FileCabinet.WPF.Converters;
+using System.Windows.Media.Imaging;
 
 namespace BSTU.FileCabinet.WPF.ViewModels.User
 {
@@ -14,6 +16,13 @@ namespace BSTU.FileCabinet.WPF.ViewModels.User
     {
         private readonly IUnitOfWork unitOfWork;
         public Student SelectedStudent { get; set; }
+        public BitmapImage SelectedImage
+        {
+            get
+            {
+                return ImageConverter.LoadImage(SelectedStudent?.Foto);
+            }
+        }
         public Group SelectedGroup { get; set; }
         public ObservableCollection<Student> Students { get; set; }
 

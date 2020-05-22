@@ -34,15 +34,22 @@
                 </ListView.View>
             </ListView>
             <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.8*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0">
+                    <Image Source="{Binding SelectedImage}" Width="100"/>
+                </Border>
                 <StackPanel  
                     DataContext="{Binding SelectedStudent}"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Center"
+                    Grid.Row="1">
                     <TextBlock Text="{Binding FirstName}"/>
                     <TextBlock Text="{Binding LastName}"/>
                     <TextBlock Text="{Binding Patronymic}"/>
                     <TextBlock Text="{Binding PhoneNumber}"/>
                     <TextBlock Text="{Binding Birthday}"/>
-                    <TextBlock Text="{Binding Foto}"/>
                 </StackPanel>
             </Grid>
         </Grid>

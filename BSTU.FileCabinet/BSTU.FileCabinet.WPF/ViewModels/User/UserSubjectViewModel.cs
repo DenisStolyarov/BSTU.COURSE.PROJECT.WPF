@@ -1,5 +1,6 @@
 ﻿using BSTU.FileCabinet.DAL.Interfaces;
 using BSTU.FileCabinet.Domain.Models;
+using BSTU.FileCabinet.WPF.Converters;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace BSTU.FileCabinet.WPF.ViewModels.User
 {
@@ -26,6 +28,14 @@ namespace BSTU.FileCabinet.WPF.ViewModels.User
             get
             {
                 return unitOfWork?.Subjects.Get(this.SelectedSubjectsOfStudent?.SubjectCode);
+            }
+        }
+
+        public BitmapImage SelectedImage
+        {
+            get
+            {
+                return ImageConverter.LoadImage(SelectedTeacher?.Foto);
             }
         }
 
