@@ -59,12 +59,17 @@
   <ItemGroup>
     <Compile Include="FileCabinetAutorizationRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FileCabinetAuthorizationServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BSTU.FileCabinet.BLL\BSTU.FileCabinet.BLL.csproj">
+      <Project>{71E470B9-C7B8-4064-A37F-408CA70503EA}</Project>
+      <Name>BSTU.FileCabinet.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BSTU.FileCabinet.DAL\BSTU.FileCabinet.DAL.csproj">
       <Project>{0da4678f-2370-4b0e-bd8f-ee6d8144854a}</Project>
       <Name>BSTU.FileCabinet.DAL</Name>

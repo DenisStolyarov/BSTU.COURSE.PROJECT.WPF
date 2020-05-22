@@ -51,7 +51,11 @@ namespace BSTU.FileCabinet.WPF.Windows
             }
             catch (WrongAuthorizationParameterException exception)
             {
-                MessageBox.Show(exception.Message);
+                MessageBox.Show(exception.Message, "Authorization fail", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Sustem Error.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

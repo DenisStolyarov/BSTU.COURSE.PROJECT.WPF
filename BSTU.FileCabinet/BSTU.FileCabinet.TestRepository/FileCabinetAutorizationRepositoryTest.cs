@@ -11,13 +11,12 @@ namespace BSTU.FileCabinet.TestRepository
     [TestClass]
     public class FileCabinetAutorizationRepositoryTest
     {
-        private FileCabinetDbContextFactory factory;
         private IUnitOfWork uow;
 
         [TestInitialize]
         public void SetupContext()
         {
-            this.factory = new FileCabinetDbContextFactory();
+            var factory = new FileCabinetDbContextFactory();
             this.uow = new UnitOfWork(factory);
         }
 
