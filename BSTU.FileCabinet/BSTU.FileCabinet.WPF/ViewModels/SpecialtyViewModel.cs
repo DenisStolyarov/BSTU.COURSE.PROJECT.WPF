@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace BSTU.FileCabinet.WPF.ViewModels
@@ -38,14 +39,28 @@ namespace BSTU.FileCabinet.WPF.ViewModels
                 PulpitCode = SelectedValue.PulpitCode,
             };
 
-            this.repository.Create(value);
-            UpdateCollection();
+            try
+            {
+                this.repository.Create(value);
+                UpdateCollection();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Wrong instance key parameter!", "Create", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void UpdateSpecialty(object parameter)
         {
-            this.repository.Update(SelectedValue.SpecialtyCode, SelectedValue);
-            UpdateCollection();
+            try
+            {
+                this.repository.Update(SelectedValue.SpecialtyCode, SelectedValue);
+                UpdateCollection();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Wrong instance key parameter!", "Update", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void DeleteSpecialty(object parameter)

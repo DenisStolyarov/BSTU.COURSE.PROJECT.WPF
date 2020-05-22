@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using BSTU.FileCabinet.DAL.Interfaces;
 using BSTU.FileCabinet.Domain.Models;
@@ -42,14 +43,28 @@ namespace BSTU.FileCabinet.WPF.ViewModels
                 UserId = SelectedValue.UserId,
             };
 
-            this.repository.Create(value);
-            UpdateCollection();
+            try
+            {
+                this.repository.Create(value);
+                UpdateCollection();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Wrong instance key parameter!", "Create", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void UpdateAuthorization(object parameter)
         {
-            this.repository.Update(SelectedValue.Login, SelectedValue);
-            UpdateCollection();
+            try
+            {
+                this.repository.Update(SelectedValue.Login, SelectedValue);
+                UpdateCollection();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Wrong instance key parameter!", "Update", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void DeleteAuthorization(object parameter)
