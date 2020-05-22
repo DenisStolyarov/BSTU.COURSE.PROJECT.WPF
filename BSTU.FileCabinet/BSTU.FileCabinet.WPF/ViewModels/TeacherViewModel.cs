@@ -1,6 +1,8 @@
 ﻿using BSTU.FileCabinet.DAL.Interfaces;
 using BSTU.FileCabinet.Domain.Models;
 using BSTU.FileCabinet.WPF.Commands;
+using BSTU.FileCabinet.WPF.Converters;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace BSTU.FileCabinet.WPF.ViewModels
 {
@@ -23,12 +26,20 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         }
 
         public Teacher SelectedValue { get; set; }
+        public BitmapImage SelectedImage
+        {
+            get
+            {
+                return ImageConverter.LoadImage(SelectedValue?.Foto);
+            }
+        }
 
         public ObservableCollection<Teacher> Teachers { get; set; }
 
         public ICommand Create => new BaseCommand(CreateTeacher);
         public ICommand Update => new BaseCommand(UpdateTeacher);
         public ICommand Delete => new BaseCommand(DeleteTeacher);
+        public ICommand Browse => new BaseCommand(SelectImage);
 
         private void CreateTeacher(object parameter)
         {
@@ -73,6 +84,20 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         private void UpdateCollection()
         {
             this.Teachers = new ObservableCollection<Teacher>(this.repository.GetAll());
+        }
+
+        private void SelectImage(object parameter)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var path = openFileDialog.FileName;
+                var array = ImageConverter.ImageToByteArrayFromFilePath(path);
+                this.SelectedValue.Foto = new byte[array.Length];
+                Array.Copy(array, SelectedValue.Foto, array.Length);
+                this.repository.Update(this.SelectedValue.TeacherCode, this.SelectedValue);
+            }
+            UpdateCollection();
         }
     }
 }
