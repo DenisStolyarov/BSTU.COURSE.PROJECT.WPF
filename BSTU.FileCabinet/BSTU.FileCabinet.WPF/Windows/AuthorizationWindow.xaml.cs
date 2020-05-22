@@ -1,4 +1,7 @@
-﻿using BSTU.FileCabinet.DAL.Interfaces;
+﻿using BSTU.FileCabinet.BLL.Interfaces;
+using BSTU.FileCabinet.BLL.Services.Exceptions;
+using BSTU.FileCabinet.DAL.Interfaces;
+using BSTU.FileCabinet.WPF.Windows.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +23,12 @@ namespace BSTU.FileCabinet.WPF.Windows
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
-        private readonly Window window;
+        private readonly IAuthorizationService service;
         private readonly IUnitOfWork unitOfWork;
-
-        public AuthorizationWindow(Window window, IUnitOfWork unitOfWork)
+        public AuthorizationWindow(IAuthorizationService service, IUnitOfWork unitOfWork)
         {
-            this.window = window ?? throw new NullReferenceException();
-            this.unitOfWork = unitOfWork ?? throw new NullReferenceException();
-
+            this.service = service ?? throw new NullReferenceException(nameof(service));
+            this.unitOfWork = unitOfWork ?? throw new NullReferenceException(nameof(unitOfWork));
             InitializeComponent();
         }
 
@@ -40,20 +41,18 @@ namespace BSTU.FileCabinet.WPF.Windows
         {
             var login = this.Login.Text;
             var password = this.Password.Password;
-            var user = this.unitOfWork.Authorizations.Get(login);
-
-            if (user is null)
+            try
             {
-                MessageBox.Show("No user!");
+                var windowType = this.service.GetWindowType(login, password, out var userId);
+                var windowFactory = new SimpleWindowFactory(unitOfWork, userId);
+                var window = windowFactory.CreateWindow(windowType);
+                window.Show();
+                this.Close();
             }
-
-            if (!user.Password.Equals(password))
+            catch (WrongAuthorizationParameterException exception)
             {
-                MessageBox.Show("Wrong user or password!");
+                MessageBox.Show(exception.Message);
             }
-
-            this.window.Show();
-            this.Close();
         }
     }
 }

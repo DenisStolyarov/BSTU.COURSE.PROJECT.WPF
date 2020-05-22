@@ -11,8 +11,8 @@ namespace BSTU.FileCabinet.BLL.Services
 {
     public class AuthorizationService : IAuthorizationService
     {
-        private const string AdminRole = "Admin";
-        private const string UserRole = "User";
+        private const string AdminRole = "admin";
+        private const string UserRole = "user";
 
         private readonly IUnitOfWork unitOfWork;
         public AuthorizationService(IUnitOfWork unitOfWork)
@@ -35,7 +35,7 @@ namespace BSTU.FileCabinet.BLL.Services
                 throw new WrongAuthorizationParameterException("Wrong password.", nameof(password));
             }
 
-            if (user.UserId is null)
+            if (user.UserId is null && user.Role.Equals(UserRole))
             {
                 throw new WrongAuthorizationParameterException("User information not found.", nameof(password));
             }

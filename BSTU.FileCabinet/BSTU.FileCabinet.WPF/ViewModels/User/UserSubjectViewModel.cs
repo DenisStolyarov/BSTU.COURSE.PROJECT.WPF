@@ -13,7 +13,6 @@ namespace BSTU.FileCabinet.WPF.ViewModels.User
     public class UserSubjectViewModel : BaseViewModel
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly int studentId = 1;
         public Teacher SelectedTeacher 
         {
             get
@@ -34,10 +33,10 @@ namespace BSTU.FileCabinet.WPF.ViewModels.User
 
         public ObservableCollection<GetSubjectsOfStudent_Result> Subjects { get; set; }
 
-        public UserSubjectViewModel(IUnitOfWork unitOfWork)
+        public UserSubjectViewModel(IUnitOfWork unitOfWork, int userId)
         {
             this.unitOfWork = unitOfWork ?? throw new NullReferenceException();
-            this.Subjects = new ObservableCollection<GetSubjectsOfStudent_Result>(unitOfWork.TeacherSubjects.GetSubjectsOfStudent(this.studentId));
+            this.Subjects = new ObservableCollection<GetSubjectsOfStudent_Result>(unitOfWork.TeacherSubjects.GetSubjectsOfStudent(userId));
         }
     }
 }

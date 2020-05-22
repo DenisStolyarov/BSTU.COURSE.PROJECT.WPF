@@ -1,4 +1,6 @@
-﻿using BSTU.FileCabinet.DAL.Infrastructures;
+﻿using BSTU.FileCabinet.BLL.Interfaces;
+using BSTU.FileCabinet.BLL.Services;
+using BSTU.FileCabinet.DAL.Infrastructures;
 using BSTU.FileCabinet.DAL.Interfaces;
 using BSTU.FileCabinet.DAL.Repositories;
 using BSTU.FileCabinet.Domain.Models;
@@ -7,6 +9,7 @@ using BSTU.FileCabinet.WPF.ViewModels;
 using BSTU.FileCabinet.WPF.ViewModels.Factories;
 using BSTU.FileCabinet.WPF.ViewModels.User;
 using BSTU.FileCabinet.WPF.Windows;
+using BSTU.FileCabinet.WPF.Windows.Factories;
 using System.Windows;
 
 namespace BSTU.FileCabinet.WPF
@@ -18,28 +21,13 @@ namespace BSTU.FileCabinet.WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            Window window = new UserMainWindow();
             IDbContextFactory<FileCabinetContext> dbContextFactory = new FileCabinetDbContextFactory();
             IUnitOfWork unitOfWork = new UnitOfWork(dbContextFactory);
-            ISimpleViewModelFactory simpleViewModelFactory = new UserSimpleViewModelFactory(unitOfWork);
-            INavigator navigator = new Navigator(simpleViewModelFactory);
-            window.DataContext = new UserMainViewModel(navigator);
-            Window authorization = new AuthorizationWindow(window, unitOfWork);
+            IAuthorizationService service = new AuthorizationService(unitOfWork);
+            Window authorization = new AuthorizationWindow(service, unitOfWork);
             authorization.Show();
 
             base.OnStartup(e);  
-        }
-
-        private void DI()
-        {
-            Window window = new AdminMainWindow();
-            IDbContextFactory<FileCabinetContext> dbContextFactory = new FileCabinetDbContextFactory();
-            IUnitOfWork unitOfWork = new UnitOfWork(dbContextFactory);
-            ISimpleViewModelFactory simpleViewModelFactory = new AdminSimpleViewModelFactory(unitOfWork);
-            INavigator navigator = new Navigator(simpleViewModelFactory);
-            window.DataContext = new AdminMainViewModel(navigator);
-            Window authorization = new AuthorizationWindow(window, unitOfWork);
-            authorization.Show();
         }
     }
 }

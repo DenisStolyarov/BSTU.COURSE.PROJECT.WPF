@@ -13,10 +13,10 @@ namespace BSTU.FileCabinet.WPF.ViewModels.User
         private readonly IUnitOfWork unitOfWork;
         public Student CurrentStudent { get; set; }
 
-        public UserHomeViewModel(IUnitOfWork unitOfWork)
+        public UserHomeViewModel(IUnitOfWork unitOfWork, int userId)
         {
             this.unitOfWork = unitOfWork ?? throw new NullReferenceException();
-            this.CurrentStudent = unitOfWork.Students.Get(1);
+            this.CurrentStudent = unitOfWork.Students.Get(userId);
         }
     }
 }

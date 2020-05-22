@@ -13,14 +13,14 @@ namespace BSTU.FileCabinet.WPF.ViewModels.User
     public class UserGroupViewModel : BaseViewModel
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly int groupId = 1;
         public Student SelectedStudent { get; set; }
         public Group SelectedGroup { get; set; }
         public ObservableCollection<Student> Students { get; set; }
 
-        public UserGroupViewModel(IUnitOfWork unitOfWork)
+        public UserGroupViewModel(IUnitOfWork unitOfWork, int userId)
         {
             this.unitOfWork = unitOfWork ?? throw new NullReferenceException();
+            var groupId = unitOfWork.Students.Get(userId).GroupId ?? throw new NullReferenceException();
             this.SelectedGroup = unitOfWork.Groups.Get(groupId);
             this.Students = new ObservableCollection<Student>(this.SelectedGroup.Students);
         }

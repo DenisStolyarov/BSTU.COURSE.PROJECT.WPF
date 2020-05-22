@@ -12,10 +12,12 @@ namespace BSTU.FileCabinet.WPF.ViewModels.Factories
     public class UserSimpleViewModelFactory : ISimpleViewModelFactory
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly int userId;
 
-        public UserSimpleViewModelFactory(IUnitOfWork unitOfWork)
+        public UserSimpleViewModelFactory(IUnitOfWork unitOfWork, int? userId)
         {
-            this.unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork ?? throw new NullReferenceException();
+            this.userId = userId ?? throw new NullReferenceException();
         }
 
         public BaseViewModel CreateViewModel(ViewType view)
@@ -23,11 +25,11 @@ namespace BSTU.FileCabinet.WPF.ViewModels.Factories
             switch (view)
             {
                 case ViewType.Home:
-                    return new UserHomeViewModel(unitOfWork);
+                    return new UserHomeViewModel(unitOfWork, userId);
                 case ViewType.UserGroup:
-                    return new UserGroupViewModel(unitOfWork);
+                    return new UserGroupViewModel(unitOfWork, userId);
                 case ViewType.UserSubject:
-                    return new UserSubjectViewModel(unitOfWork);
+                    return new UserSubjectViewModel(unitOfWork, userId);
                 default:
                     throw new Exception();
             }
