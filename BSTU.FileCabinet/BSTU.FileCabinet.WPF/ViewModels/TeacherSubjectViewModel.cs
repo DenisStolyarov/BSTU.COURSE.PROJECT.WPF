@@ -3,6 +3,7 @@ using BSTU.FileCabinet.DAL.Interfaces;
 using BSTU.FileCabinet.DAL.Repositories.Common;
 using BSTU.FileCabinet.Domain.Models;
 using BSTU.FileCabinet.WPF.Commands;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -82,12 +83,61 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void ExportRecords(object parameter)
         {
-
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    var path = openFileDialog.FileName;
+                    this.service.ExportRecords(this.repository.GetAll(), path);
+                    MessageBox.Show($"Record(s) were exported to {path}.", "File", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Wrong file format!", "File", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void ImportRecords(object parameter)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    var path = openFileDialog.FileName;
+                    var records = this.service.ImportRecords(path);
+                    var count = FillRecord(records);
+                    MessageBox.Show($"{count} record(s) were imported.", "File", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Wrong file format!", "File", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            UpdateCollection();
+        }
 
+        private int FillRecord(IEnumerable<TeacherSubject> records)
+        {
+            var count = 0;
+            foreach (var record in records)
+            {
+                try
+                {
+                    if (this.repository.Get(record.TeacherCode, record.SubjectCode) is null)
+                    {
+                        this.repository.Create(record);
+                        count++;
+                    }
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+            return count;
         }
     }
 }
