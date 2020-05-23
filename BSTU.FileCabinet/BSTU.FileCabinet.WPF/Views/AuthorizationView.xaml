@@ -8,21 +8,40 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="277*"/>
-            <ColumnDefinition Width="523*"/>
+            <ColumnDefinition Width="201*"/>
+            <ColumnDefinition Width="199*"/>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding Authorizations, UpdateSourceTrigger=PropertyChanged}" 
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.9*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+                         Grid.Column="0"/>
+                <Button Content="Search" 
+                        Grid.Column="1"
+                        Command="{Binding Search}"/>
+            </Grid>
+            <ListView ItemsSource="{Binding Authorizations, UpdateSourceTrigger=PropertyChanged}" 
                   SelectedItem="{Binding SelectedValue}" 
-                  Grid.Column="0">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Login}">Login</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Password}">Password</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Role}">Role</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=UserId}">UserId</GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                  Grid.Row="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Login}">Login</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Password}">Password</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Role}">Role</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=UserId}">UserId</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
         <Grid Grid.Column="1">
             <StackPanel  
                     DataContext="{Binding SelectedValue}"

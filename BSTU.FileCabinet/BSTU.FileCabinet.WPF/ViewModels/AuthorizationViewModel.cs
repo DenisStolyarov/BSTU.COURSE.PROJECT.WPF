@@ -30,7 +30,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         }
 
         public Authorization SelectedValue { get; set; }
-
+        public string SearchText { get; set; }
         public ObservableCollection<Authorization> Authorizations { get; set; }
 
         public ICommand Create => new BaseCommand(CreateAuthorization);
@@ -38,6 +38,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         public ICommand Delete => new BaseCommand(DeleteAuthorization);
         public ICommand Export => new BaseCommand(ExportRecords);
         public ICommand Import => new BaseCommand(ImportRecords);
+        public ICommand Search => new BaseCommand(SearchRecords);
 
         private void CreateAuthorization(object parameter)
         {
@@ -141,6 +142,13 @@ namespace BSTU.FileCabinet.WPF.ViewModels
                 }
             }
             return count;
+        }
+
+        private void SearchRecords(object parameter)
+        {
+            this.Authorizations = string.IsNullOrEmpty(this.SearchText)
+                ?  new ObservableCollection<Authorization>(this.repository.GetAll())
+                : new ObservableCollection<Authorization>(this.Authorizations.Where(i => i.Login.ToUpper().Contains(SearchText.ToUpper())));
         }
     }
 }
