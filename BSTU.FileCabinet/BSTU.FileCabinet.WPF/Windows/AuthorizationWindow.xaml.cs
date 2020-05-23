@@ -2,6 +2,7 @@
 using BSTU.FileCabinet.BLL.Services.Exceptions;
 using BSTU.FileCabinet.DAL.Interfaces;
 using BSTU.FileCabinet.WPF.Windows.Factories;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace BSTU.FileCabinet.WPF.Windows
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IAuthorizationService service;
         private readonly IUnitOfWork unitOfWork;
         public AuthorizationWindow(IAuthorizationService service, IUnitOfWork unitOfWork)
@@ -46,15 +48,18 @@ namespace BSTU.FileCabinet.WPF.Windows
                 var windowType = this.service.GetWindowType(login, password, out var userId);
                 var windowFactory = new SimpleWindowFactory(unitOfWork, userId);
                 var window = windowFactory.CreateWindow(windowType);
+                logger.Info($"User {login} enter in application.");
                 window.Show();
                 this.Close();
             }
             catch (WrongAuthorizationParameterException exception)
             {
-                MessageBox.Show(exception.Message, "Authorization fail", MessageBoxButton.OK, MessageBoxImage.Warning);
+                logger.Warn($"Authorization fail: {login} - {password}", exception);
+                MessageBox.Show(exception.WrongMessage, "Authorization fail", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                logger.Error(exception.Message, "Error");
                 MessageBox.Show("Sustem Error.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
