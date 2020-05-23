@@ -38,10 +38,10 @@ namespace BSTU.FileCabinet.BLL.Services
 
         private bool IsValidPath(string path)
         {
-            if (!File.Exists(path))
-            {
-                return false;
-            }
+            //if (!File.Exists(path))
+            //{
+            //    return false;
+            //}
 
             if (!Path.GetExtension(path).Equals(FormatExtension))
             {

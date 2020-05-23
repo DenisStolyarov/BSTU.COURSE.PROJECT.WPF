@@ -49,7 +49,7 @@ namespace BSTU.FileCabinet.TestRepository
             
         }
 
-        [TestMethod, Priority(1)]
+        [TestMethod, Priority(10)]
         public void TestAuthorizationsCreateMethod()
         {
 
@@ -63,7 +63,7 @@ namespace BSTU.FileCabinet.TestRepository
             Assert.AreEqual(result, true);
         }
 
-        [TestMethod, Priority(2)]
+        [TestMethod, Priority(5)]
         public void TestAuthorizationsUpdateMethod()
         {
             var entity = new Authorization();
@@ -72,7 +72,7 @@ namespace BSTU.FileCabinet.TestRepository
             Assert.AreEqual(result, true);
         }
 
-        [TestMethod, Priority(3)]
+        [TestMethod, Priority(1)]
         public void TestAuthorizationsDeleteMethod()
         {
             var result = uow.Authorizations.Delete("Test");
