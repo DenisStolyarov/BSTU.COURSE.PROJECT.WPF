@@ -44,6 +44,8 @@
                 <Button Command="{Binding Create}" Content="Create"/>
                 <Button Command="{Binding Update}" Content="Update"/>
                 <Button Command="{Binding Delete}" Content="Delete"/>
+                <Button Command="{Binding Export}" Content="Export"/>
+                <Button Command="{Binding Import}" Content="Import"/>
             </StackPanel>
         </Grid>
     </Grid>

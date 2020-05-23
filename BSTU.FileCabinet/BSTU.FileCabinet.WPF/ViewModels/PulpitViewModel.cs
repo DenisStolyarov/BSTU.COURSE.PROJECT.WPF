@@ -32,6 +32,8 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         public ICommand Create => new BaseCommand(CreatePulpit);
         public ICommand Update => new BaseCommand(UpdatePulpit);
         public ICommand Delete => new BaseCommand(DeletePulpit);
+        public ICommand Export => new BaseCommand(ExportRecords);
+        public ICommand Import => new BaseCommand(ImportRecords);
 
         private void CreatePulpit(object parameter)
         {
@@ -75,6 +77,16 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         private void UpdateCollection()
         {
             this.Pulpits = new ObservableCollection<Pulpit>(this.repository.GetAll());
+        }
+
+        private void ExportRecords(object parameter)
+        {
+
+        }
+
+        private void ImportRecords(object parameter)
+        {
+
         }
     }
 }

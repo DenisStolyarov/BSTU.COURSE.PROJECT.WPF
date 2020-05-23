@@ -32,6 +32,8 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         public ICommand Create => new BaseCommand(CreateGroup);
         public ICommand Update => new BaseCommand(UpdateGroup);
         public ICommand Delete => new BaseCommand(DeleteGroup);
+        public ICommand Export => new BaseCommand(ExportRecords);
+        public ICommand Import => new BaseCommand(ImportRecords);
 
         private void CreateGroup(object parameter)
         {
@@ -76,6 +78,16 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         private void UpdateCollection()
         {
             this.Groups = new ObservableCollection<Group>(this.repository.GetAll());
+        }
+
+        private void ExportRecords(object parameter)
+        {
+
+        }
+
+        private void ImportRecords(object parameter)
+        {
+
         }
     }
 }

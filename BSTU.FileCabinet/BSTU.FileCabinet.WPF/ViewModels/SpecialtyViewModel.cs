@@ -32,6 +32,8 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         public ICommand Create => new BaseCommand(CreateSpecialty);
         public ICommand Update => new BaseCommand(UpdateSpecialty);
         public ICommand Delete => new BaseCommand(DeleteSpecialty);
+        public ICommand Export => new BaseCommand(ExportRecords);
+        public ICommand Import => new BaseCommand(ImportRecords);
 
         private void CreateSpecialty(object parameter)
         {
@@ -75,6 +77,16 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         private void UpdateCollection()
         {
             this.Specialties = new ObservableCollection<Specialty>(this.repository.GetAll());
+        }
+
+        private void ExportRecords(object parameter)
+        {
+
+        }
+
+        private void ImportRecords(object parameter)
+        {
+
         }
     }
 }

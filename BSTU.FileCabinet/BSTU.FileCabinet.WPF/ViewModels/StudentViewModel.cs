@@ -43,6 +43,8 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         public ICommand Update => new BaseCommand(UpdateStudent);
         public ICommand Delete => new BaseCommand(DeleteStudent);
         public ICommand Browse => new BaseCommand(SelectImage);
+        public ICommand Export => new BaseCommand(ExportRecords);
+        public ICommand Import => new BaseCommand(ImportRecords);
 
         private void CreateStudent(object parameter)
         {
@@ -104,6 +106,16 @@ namespace BSTU.FileCabinet.WPF.ViewModels
                 this.repository.Update(this.SelectedValue.StudentId, this.SelectedValue);
             }
             UpdateCollection();
+        }
+
+        private void ExportRecords(object parameter)
+        {
+
+        }
+
+        private void ImportRecords(object parameter)
+        {
+
         }
     }
 }

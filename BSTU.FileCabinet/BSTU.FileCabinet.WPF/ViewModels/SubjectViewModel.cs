@@ -32,6 +32,8 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         public ICommand Create => new BaseCommand(CreateSubject);
         public ICommand Update => new BaseCommand(UpdateSubject);
         public ICommand Delete => new BaseCommand(DeleteSubject);
+        public ICommand Export => new BaseCommand(ExportRecords);
+        public ICommand Import => new BaseCommand(ImportRecords);
 
         private void CreateSubject(object parameter)
         {
@@ -75,6 +77,16 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         private void UpdateCollection()
         {
             this.Subjects = new ObservableCollection<Subject>(this.repository.GetAll());
+        }
+
+        private void ExportRecords(object parameter)
+        {
+
+        }
+
+        private void ImportRecords(object parameter)
+        {
+
         }
     }
 }
