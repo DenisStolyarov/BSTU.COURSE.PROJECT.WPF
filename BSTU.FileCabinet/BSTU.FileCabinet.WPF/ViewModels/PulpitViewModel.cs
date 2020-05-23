@@ -1,4 +1,5 @@
-﻿using BSTU.FileCabinet.DAL.Interfaces;
+﻿using BSTU.FileCabinet.BLL.Interfaces;
+using BSTU.FileCabinet.DAL.Interfaces;
 using BSTU.FileCabinet.Domain.Models;
 using BSTU.FileCabinet.WPF.Commands;
 using System;
@@ -15,10 +16,12 @@ namespace BSTU.FileCabinet.WPF.ViewModels
     class PulpitViewModel : BaseViewModel
     {
         private readonly IRepository<Pulpit, string> repository;
+        private readonly IFileRecordService<Pulpit> service;
 
-        public PulpitViewModel(IRepository<Pulpit, string> repository)
+        public PulpitViewModel(IRepository<Pulpit, string> repository, IFileRecordService<Pulpit> service)
         {
             this.repository = repository ?? throw new NullReferenceException();
+            this.service = service ?? throw new NullReferenceException();
             UpdateCollection();
         }
 

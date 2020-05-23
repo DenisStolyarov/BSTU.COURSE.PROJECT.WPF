@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using BSTU.FileCabinet.BLL.Interfaces;
 using BSTU.FileCabinet.DAL.Interfaces;
 using BSTU.FileCabinet.Domain.Models;
 using BSTU.FileCabinet.WPF.Commands;
@@ -18,10 +19,12 @@ namespace BSTU.FileCabinet.WPF.ViewModels
     public class AuthorizationViewModel : BaseViewModel
     {
         private readonly IRepository<Authorization, string> repository;
+        private readonly IFileRecordService<Authorization> service;
 
-        public AuthorizationViewModel(IRepository<Authorization, string> repository)
+        public AuthorizationViewModel(IRepository<Authorization, string> repository, IFileRecordService<Authorization> service)
         {
             this.repository = repository ?? throw new NullReferenceException();
+            this.service = service ?? throw new NullReferenceException();
             UpdateCollection();
         }
 

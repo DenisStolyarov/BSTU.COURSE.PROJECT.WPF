@@ -1,4 +1,5 @@
-﻿using BSTU.FileCabinet.DAL.Interfaces;
+﻿using BSTU.FileCabinet.BLL.Interfaces;
+using BSTU.FileCabinet.DAL.Interfaces;
 using BSTU.FileCabinet.DAL.Repositories.Common;
 using BSTU.FileCabinet.Domain.Models;
 using BSTU.FileCabinet.WPF.Commands;
@@ -16,10 +17,12 @@ namespace BSTU.FileCabinet.WPF.ViewModels
     class TeacherSubjectViewModel : BaseViewModel
     {
         private readonly TeacherSubjectRepository repository;
+        private readonly IFileRecordService<TeacherSubject> service;
 
-        public TeacherSubjectViewModel(TeacherSubjectRepository repository)
+        public TeacherSubjectViewModel(TeacherSubjectRepository repository, IFileRecordService<TeacherSubject> service)
         {
             this.repository = repository ?? throw new NullReferenceException();
+            this.service = service ?? throw new NullReferenceException();
             UpdateCollection();
         }
 

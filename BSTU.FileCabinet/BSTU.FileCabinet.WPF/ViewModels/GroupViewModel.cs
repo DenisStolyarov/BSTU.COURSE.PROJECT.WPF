@@ -1,4 +1,5 @@
-﻿using BSTU.FileCabinet.DAL.Interfaces;
+﻿using BSTU.FileCabinet.BLL.Interfaces;
+using BSTU.FileCabinet.DAL.Interfaces;
 using BSTU.FileCabinet.Domain.Models;
 using BSTU.FileCabinet.WPF.Commands;
 using System;
@@ -15,10 +16,12 @@ namespace BSTU.FileCabinet.WPF.ViewModels
     class GroupViewModel : BaseViewModel
     {
         private readonly IRepository<Group, int> repository;
+        private readonly IFileRecordService<Group> service;
 
-        public GroupViewModel(IRepository<Group, int> repository)
+        public GroupViewModel(IRepository<Group, int> repository, IFileRecordService<Group> service)
         {
             this.repository = repository ?? throw new NullReferenceException();
+            this.service = service ?? throw new NullReferenceException();
             UpdateCollection();
         }
 

@@ -1,4 +1,6 @@
-﻿using BSTU.FileCabinet.DAL.Interfaces;
+﻿using BSTU.FileCabinet.BLL.Services;
+using BSTU.FileCabinet.DAL.Interfaces;
+using BSTU.FileCabinet.Domain.Models;
 using BSTU.FileCabinet.WPF.State.Navigators;
 using System;
 using System.Collections.Generic;
@@ -22,23 +24,23 @@ namespace BSTU.FileCabinet.WPF.ViewModels.Factories
             switch (view)
             {
                 case ViewType.Authorization:
-                    return new AuthorizationViewModel(unitOfWork.Authorizations);
+                    return new AuthorizationViewModel(unitOfWork.Authorizations, new CommonFileRecordService<Authorization>());
                 case ViewType.Faculty:
-                    return new FacultyViewModel(unitOfWork.Faculties);
+                    return new FacultyViewModel(unitOfWork.Faculties, new CommonFileRecordService<Faculty>());
                 case ViewType.Group:
-                    return new GroupViewModel(unitOfWork.Groups);
+                    return new GroupViewModel(unitOfWork.Groups, new CommonFileRecordService<Group>());
                 case ViewType.Pulpit:
-                    return new PulpitViewModel(unitOfWork.Pulpits);
+                    return new PulpitViewModel(unitOfWork.Pulpits, new CommonFileRecordService<Pulpit>());
                 case ViewType.Speciality:
-                    return new SpecialtyViewModel(unitOfWork.Specialties);
+                    return new SpecialtyViewModel(unitOfWork.Specialties, new CommonFileRecordService<Specialty>());
                 case ViewType.Student:
-                    return new StudentViewModel(unitOfWork.Students);
+                    return new StudentViewModel(unitOfWork.Students, new CommonFileRecordService<Student>());
                 case ViewType.Subject:
-                    return new SubjectViewModel(unitOfWork.Subjects);
+                    return new SubjectViewModel(unitOfWork.Subjects, new CommonFileRecordService<Subject>());
                 case ViewType.TeacherSubject:
-                    return new TeacherSubjectViewModel(unitOfWork.TeacherSubjects);
+                    return new TeacherSubjectViewModel(unitOfWork.TeacherSubjects, new CommonFileRecordService<TeacherSubject>());
                 case ViewType.Teacher:
-                    return new TeacherViewModel(unitOfWork.Teachers);
+                    return new TeacherViewModel(unitOfWork.Teachers, new CommonFileRecordService<Teacher>());
                 default:
                     throw new Exception();
             }
