@@ -10,15 +10,13 @@
 namespace BSTU.FileCabinet.Domain.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Authorization
+    public partial class GetSubjectsOfStudent_Result
     {
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Role { get; set; }
-        public Nullable<int> UserId { get; set; }
-    
-        public virtual Student Student { get; set; }
+        public string TeacherCode { get; set; }
+        public string TeacherName { get; set; }
+        public string SubjectCode { get; set; }
+        public string SubjectName { get; set; }
+        public string PulpitCode { get; set; }
     }
 }

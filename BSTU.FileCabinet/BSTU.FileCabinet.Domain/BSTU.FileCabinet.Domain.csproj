@@ -74,10 +74,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FileCabinetModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\StudentsOfGroup.cs">
+    <Compile Include="Models\GetStudentsOfGroup_Result.cs">
       <DependentUpon>FileCabinetModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SubjectsOfStudent.cs">
+    <Compile Include="Models\GetSubjectsOfStudent_Result.cs">
       <DependentUpon>FileCabinetModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Group.cs">
@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Models\FileCabinetModel.edmx.diagram">
       <DependentUpon>FileCabinetModel.edmx</DependentUpon>
     </None>
