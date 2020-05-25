@@ -38,6 +38,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void CreateFaculty(object parameter)
         {
+            if (this.SelectedValue is null) return;
             var value = new Faculty()
             {
                FacultyCode = SelectedValue.FacultyCode,
@@ -57,6 +58,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void UpdateFaculty(object parameter)
         {
+            if (this.SelectedValue is null) return;
             try
             {
                 this.repository.Update(SelectedValue.FacultyCode, SelectedValue);
@@ -70,6 +72,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void DeleteFaculty(object parameter)
         {
+            if (this.SelectedValue is null) return;
             this.repository.Delete(SelectedValue.FacultyCode);
             UpdateCollection();
         }

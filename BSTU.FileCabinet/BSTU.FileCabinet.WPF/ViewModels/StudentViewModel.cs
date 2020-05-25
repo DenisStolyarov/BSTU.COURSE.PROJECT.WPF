@@ -48,6 +48,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void CreateStudent(object parameter)
         {
+            if (this.SelectedValue is null) return;
             var value = new Student()
             {
                 GroupId = SelectedValue.GroupId,
@@ -72,6 +73,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void UpdateStudent(object parameter)
         {
+            if (this.SelectedValue is null) return;
             try
             {
                 this.repository.Update(SelectedValue.StudentId, SelectedValue);
@@ -85,6 +87,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void DeleteStudent(object parameter)
         {
+            if (this.SelectedValue is null) return;
             this.repository.Delete(SelectedValue.StudentId);
             UpdateCollection();
         }

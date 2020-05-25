@@ -38,6 +38,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void CreateSpecialty(object parameter)
         {
+            if (this.SelectedValue is null) return;
             var value = new Specialty()
             {
                 SpecialtyCode = SelectedValue.SpecialtyCode,
@@ -58,6 +59,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void UpdateSpecialty(object parameter)
         {
+            if (this.SelectedValue is null) return;
             try
             {
                 this.repository.Update(SelectedValue.SpecialtyCode, SelectedValue);
@@ -71,6 +73,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void DeleteSpecialty(object parameter)
         {
+            if (this.SelectedValue is null) return;
             this.repository.Delete(SelectedValue.SpecialtyCode);
             UpdateCollection();
         }

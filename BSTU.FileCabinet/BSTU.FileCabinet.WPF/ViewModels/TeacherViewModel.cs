@@ -48,6 +48,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void CreateTeacher(object parameter)
         {
+            if (this.SelectedValue is null) return;
             var value = new Teacher()
             {
                 TeacherCode = SelectedValue.TeacherCode,
@@ -69,6 +70,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void UpdateTeacher(object parameter)
         {
+            if (this.SelectedValue is null) return;
             try
             {
                 this.repository.Update(SelectedValue.TeacherCode, SelectedValue);
@@ -82,6 +84,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void DeleteTeacher(object parameter)
         {
+            if (this.SelectedValue is null) return;
             this.repository.Delete(SelectedValue.TeacherCode);
             UpdateCollection();
         }

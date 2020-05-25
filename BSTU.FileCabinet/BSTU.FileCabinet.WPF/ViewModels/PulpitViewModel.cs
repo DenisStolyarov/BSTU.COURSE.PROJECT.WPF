@@ -38,6 +38,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void CreatePulpit(object parameter)
         {
+            if (this.SelectedValue is null) return;
             var value = new Pulpit()
             {
                 PulpitCode = SelectedValue.PulpitCode,
@@ -58,6 +59,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void UpdatePulpit(object parameter)
         {
+            if (this.SelectedValue is null) return;
             try
             {
                 this.repository.Update(SelectedValue.PulpitCode, SelectedValue);
@@ -71,6 +73,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void DeletePulpit(object parameter)
         {
+            if (this.SelectedValue is null) return;
             this.repository.Delete(SelectedValue.PulpitCode);
             UpdateCollection();
         }

@@ -38,6 +38,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void CreateGroup(object parameter)
         {
+            if (this.SelectedValue is null) return;
             var value = new Group()
             {
                 Course = SelectedValue.Course,
@@ -59,6 +60,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void UpdateGroup(object parameter)
         {
+            if (this.SelectedValue is null) return;
             try
             {
                 this.repository.Update(SelectedValue.GroupId, SelectedValue);
@@ -72,6 +74,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void DeleteGroup(object parameter)
         {
+            if (this.SelectedValue is null) return;
             this.repository.Delete(SelectedValue.GroupId);
             UpdateCollection();
         }

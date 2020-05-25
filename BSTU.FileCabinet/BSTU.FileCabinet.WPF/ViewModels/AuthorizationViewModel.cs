@@ -42,6 +42,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void CreateAuthorization(object parameter)
         {
+            if (this.SelectedValue is null) return; 
             var value = new Authorization()
             {
                 Login = SelectedValue.Login,
@@ -63,6 +64,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void UpdateAuthorization(object parameter)
         {
+            if (this.SelectedValue is null) return;
             try
             {
                 this.repository.Update(SelectedValue.Login, SelectedValue);
@@ -76,6 +78,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void DeleteAuthorization(object parameter)
         {
+            if (this.SelectedValue is null) return;
             this.repository.Delete(SelectedValue.Login);
             UpdateCollection();
         }
@@ -148,7 +151,9 @@ namespace BSTU.FileCabinet.WPF.ViewModels
         {
             this.Authorizations = string.IsNullOrEmpty(this.SearchText)
                 ?  new ObservableCollection<Authorization>(this.repository.GetAll())
-                : new ObservableCollection<Authorization>(this.Authorizations.Where(i => i.Login.ToUpper().Contains(SearchText.ToUpper())));
+                : new ObservableCollection<Authorization>(this.repository.GetAll()
+                .Where(i => i.Login.ToUpper()
+                .Contains(SearchText.ToUpper())));
         }
     }
 }

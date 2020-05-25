@@ -38,6 +38,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void CreateSubject(object parameter)
         {
+            if (this.SelectedValue is null) return;
             var value = new Subject()
             {
                 SubjectCode = SelectedValue.SubjectCode,
@@ -58,6 +59,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void UpdateSubject(object parameter)
         {
+            if (this.SelectedValue is null) return;
             try
             {
                 this.repository.Update(SelectedValue.SubjectCode, SelectedValue);
@@ -71,6 +73,7 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void DeleteSubject(object parameter)
         {
+            if (this.SelectedValue is null) return;
             this.repository.Delete(SelectedValue.SubjectCode);
             UpdateCollection();
         }
