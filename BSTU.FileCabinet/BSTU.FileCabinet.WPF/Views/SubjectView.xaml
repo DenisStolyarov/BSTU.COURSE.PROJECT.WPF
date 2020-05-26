@@ -8,17 +8,24 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="277*"/>
-            <ColumnDefinition Width="523*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
         <ListView ItemsSource="{Binding Subjects}" 
                   SelectedItem="{Binding SelectedValue}" 
+                      Foreground="White"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   Grid.Column="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectCode}">SubjectCode</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectName}">SubjectName</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=PulpitCode}">PulpitCode</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectCode}">
+                        <TextBlock Text="Код" Style="{StaticResource TextBlockCommonStyle}" 
+                                       HorizontalAlignment="Center"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectName}">
+                        <TextBlock Text="Название" Style="{StaticResource TextBlockCommonStyle}"
+                                       HorizontalAlignment="Center"/>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -26,9 +33,33 @@
             <StackPanel  
                     DataContext="{Binding SelectedValue}"
                     VerticalAlignment="Center">
-                <TextBox Text="{Binding SubjectCode}"/>
-                <TextBox Text="{Binding SubjectName}"/>
-                <TextBox Text="{Binding PulpitCode}"/>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Код"
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding SubjectCode}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Название" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding SubjectName}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Кафедра" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding PulpitCode}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
             </StackPanel>
             <StackPanel VerticalAlignment="Bottom">
                 <Button Command="{Binding Create}" 
