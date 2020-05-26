@@ -5,19 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BSTU.FileCabinet.WPF.Controls"
              xmlns:nav="clr-namespace:BSTU.FileCabinet.WPF.State.Navigators"
-             mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="100">
+             mc:Ignorable="d" >
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-            <Button Content="Authorization" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Authorization}"></Button>
-            <Button Content="Faculty" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Faculty}"></Button>
-            <Button Content="Group" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Group}"></Button>
-            <Button Content="Pulpit" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Pulpit}"></Button>
-            <Button Content="Speciality" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Speciality}"></Button>
-            <Button Content="Student" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Student}"></Button>
-            <Button Content="Subject" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Subject}"></Button>
-            <Button Content="Teacher" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Teacher}"></Button>
-            <Button Content="TeacherSubject" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.TeacherSubject}"></Button>
+            <Button Content="Авторизация" Style="{StaticResource LoginButtonStyle}" 
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.Authorization}"></Button>
+            <Button Content="Факультеты" Style="{StaticResource LoginButtonStyle}" 
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.Faculty}"></Button>
+            <Button Content="Группы" Style="{StaticResource LoginButtonStyle}" 
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.Group}"></Button>
+            <Button Content="Кафедры" Style="{StaticResource LoginButtonStyle}" 
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.Pulpit}"></Button>
+            <Button Content="Специальности" Style="{StaticResource LoginButtonStyle}" 
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.Speciality}"></Button>
+            <Button Content="Студенты" Style="{StaticResource LoginButtonStyle}" 
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.Student}"></Button>
+            <Button Content="Предметы" Style="{StaticResource LoginButtonStyle}" 
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.Subject}"></Button>
+            <Button Content="Преподаватели" Style="{StaticResource LoginButtonStyle}" 
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.Teacher}"></Button>
+            <Button Content="ПредметУчитель" Style="{StaticResource LoginButtonStyle}" 
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.TeacherSubject}"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

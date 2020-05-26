@@ -6,6 +6,7 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="FontFamily" Value="Helvetica"/>
+        <Setter Property="Height" Value="50"/>
 
         <Setter Property="Template">
             <Setter.Value>

@@ -28,7 +28,7 @@ namespace BSTU.FileCabinet.WPF
             //authorization.Show();
 
             var windowFactory = new SimpleWindowFactory(unitOfWork, 87);
-            var window = windowFactory.CreateWindow(WindowType.User);
+            var window = windowFactory.CreateWindow(WindowType.Admin);
             window.Show();
             base.OnStartup(e);  
         }

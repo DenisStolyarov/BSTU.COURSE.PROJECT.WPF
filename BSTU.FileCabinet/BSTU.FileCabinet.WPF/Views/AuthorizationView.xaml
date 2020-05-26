@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BSTU.FileCabinet.WPF.Views"
              mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="201*"/>
-            <ColumnDefinition Width="199*"/>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition Width="0.3*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
@@ -18,45 +19,113 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0">
+            <Border Grid.Row="0" 
+                    BorderBrush="White" 
+                    BorderThickness="1"
+                    CornerRadius="5">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.8*"/>
                     <ColumnDefinition Width="0.2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
-                         Grid.Column="0"/>
-                <Button Content="Search" 
-                        Grid.Column="1"
-                        Command="{Binding Search}"/>
+                         Grid.Column="0"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         MinWidth="150"
+                         FontSize="20"
+                         Style="{StaticResource TextBoxAdminStyle}"/>
+                <Button Grid.Column="1"
+                        Command="{Binding Search}"
+                        Style="{StaticResource CommonButtonStyle}"
+                        Height="40">
+                    <Button.Content>
+                        <materialDesign:PackIcon Kind="Magnify" Width="50" Height="30"/>
+                    </Button.Content>
+                </Button>
+                    
             </Grid>
+            </Border>
             <ListView ItemsSource="{Binding Authorizations, UpdateSourceTrigger=PropertyChanged}" 
-                  SelectedItem="{Binding SelectedValue}" 
-                  Grid.Row="1">
+                      SelectedItem="{Binding SelectedValue}" 
+                      Grid.Row="1"
+                      Foreground="White"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Login}">Login</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Password}">Password</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Role}">Role</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=UserId}">UserId</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Login}">
+                            <TextBlock Text="Логин" Style="{StaticResource TextBlockCommonStyle}" 
+                                       HorizontalAlignment="Center"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Password}">
+                            <TextBlock Text="Пароль" Style="{StaticResource TextBlockCommonStyle}"
+                                       HorizontalAlignment="Center"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Role}">
+                            <TextBlock Text="Права доступа" Style="{StaticResource TextBlockCommonStyle}"
+                                       HorizontalAlignment="Center"/>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
         </Grid>
         <Grid Grid.Column="1">
-            <StackPanel  
-                    DataContext="{Binding SelectedValue}"
-                    VerticalAlignment="Center">
-                <TextBox Text="{Binding Login}"/>
-                <TextBox Text="{Binding Password}"/>
-                <TextBox Text="{Binding Role}"/>
-                <TextBox Text="{Binding UserId}"/>
+            <StackPanel DataContext="{Binding SelectedValue}"
+                    VerticalAlignment="Center" 
+                    Grid.Row="1">
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Логин"
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding Login}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Пароль" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding Password}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Роль" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding Role}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Пользователь (Id)" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding UserId}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
             </StackPanel>
             <StackPanel VerticalAlignment="Bottom">
-                <Button Command="{Binding Create}" Content="Create"/>
-                <Button Command="{Binding Update}" Content="Update"/>
-                <Button Command="{Binding Delete}" Content="Delete"/>
-                <Button Command="{Binding Export}" Content="Export"/>
-                <Button Command="{Binding Import}" Content="Import"/>
+                <Button Command="{Binding Create}" 
+                        Content="Добавить"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Update}" 
+                        Content="Обновить"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Delete}" 
+                        Content="Удалить"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Export}" 
+                        Content="Экспорт"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Import}" 
+                        Content="Импорт"
+                        Style="{StaticResource CommonButtonStyle}"/>
             </StackPanel>
         </Grid>
     </Grid>
