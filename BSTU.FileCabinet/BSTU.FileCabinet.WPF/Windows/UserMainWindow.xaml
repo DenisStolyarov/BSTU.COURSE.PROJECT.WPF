@@ -6,13 +6,20 @@
         xmlns:local="clr-namespace:BSTU.FileCabinet.WPF.Windows"
         xmlns:control="clr-namespace:BSTU.FileCabinet.WPF.Controls"
         mc:Ignorable="d"
-        Title="UserMainWindow" Height="450" Width="800">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Background="{StaticResource PinkBlueLineColor}"
+        Title="Картотека">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.1*"/>
             <ColumnDefinition Width="0.8*"/>
         </Grid.ColumnDefinitions>
-        <control:UserNavigationBar Grid.Column="0" DataContext="{Binding Navigator}"/>
-        <ContentControl Grid.Column="1" Content="{Binding Navigator.CurrentViewModel}"/>
+        <control:UserNavigationBar 
+            MinWidth="70"
+            Grid.Column="0" 
+            DataContext="{Binding Navigator}"/>
+        <ContentControl Grid.Column="1" 
+                        Content="{Binding Navigator.CurrentViewModel}"
+                        Margin="10"/>
     </Grid>
 </Window>

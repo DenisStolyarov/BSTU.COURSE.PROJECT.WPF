@@ -6,12 +6,34 @@
              xmlns:local="clr-namespace:BSTU.FileCabinet.WPF.Controls"
              xmlns:nav="clr-namespace:BSTU.FileCabinet.WPF.State.Navigators"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="100">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="200" d:DesignWidth="70">
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-            <Button Content="Home" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Home}"></Button>
-            <Button Content="Group" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.UserGroup}"></Button>
-            <Button Content="Subject" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.UserSubject}"></Button>
+            <Button Style="{StaticResource LoginButtonStyle}"
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.Home}"
+                    Margin="5">
+                <Button.Content>
+                    <materialDesign:PackIcon Kind="HomeAccount" Width="50" Height="50"/>
+                </Button.Content>                
+            </Button>
+            <Button Style="{StaticResource LoginButtonStyle}"
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.UserGroup}"
+                    Margin="5">
+                <Button.Content>
+                    <materialDesign:PackIcon Kind="AccountGroup" Width="50" Height="50"/>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource LoginButtonStyle}"
+                    Command="{Binding UpdateCurrentViewModelCommand}" 
+                    CommandParameter="{x:Static nav:ViewType.UserSubject}"
+                    Margin="5">
+                <Button.Content>
+                    <materialDesign:PackIcon Kind="TextSubject" Width="50" Height="50"/>
+                </Button.Content>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

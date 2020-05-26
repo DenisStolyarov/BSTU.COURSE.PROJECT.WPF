@@ -5,17 +5,66 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BSTU.FileCabinet.WPF.Views.UserViews"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:converter="clr-namespace:BSTU.FileCabinet.WPF.Converters"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:DateTimeToDateConverter x:Key="DataTimeConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition />
+            <RowDefinition Height="0.35*"/>
+            <RowDefinition Height="0.6*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" DataContext="{Binding SelectedGroup}">
-            <TextBlock Text="{Binding Faculty.FacultyName}"/>
-            <TextBlock Text="{Binding GroupNumber}"/>
-            <TextBlock Text="{Binding Specialty.SpecialtyName}"/>
-            <TextBlock Text="{Binding Course}"/>
+        <StackPanel Grid.Row="0" 
+                    DataContext="{Binding SelectedGroup}"
+                    VerticalAlignment="Center">
+            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                 
+                                 Opacity="0.9">
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                        <TextBlock Text="Факультет"
+                                   Style="{StaticResource TextBlockColorfulStyle}"
+                                   Margin="5"/>
+                        <TextBlock Text="{Binding Faculty.FacultyName}" 
+                                   Style="{StaticResource TextBlockColorfulStyle}"
+                                   Foreground="{StaticResource PinkBlueLineColor}"
+                                   Margin="5"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                        <TextBlock Text="Специальность"
+                           Style="{StaticResource TextBlockColorfulStyle}"
+                           Margin="5"/>
+                        <TextBlock Text="{Binding Specialty.SpecialtyName}" 
+                           Style="{StaticResource TextBlockColorfulStyle}"
+                                   Foreground="{StaticResource PinkBlueLineColor}"
+                           Margin="5"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                        <TextBlock Text="Курс"
+                           Style="{StaticResource TextBlockColorfulStyle}"
+                           Margin="5"/>
+                        <TextBlock Text="{Binding Course}" 
+                           Style="{StaticResource TextBlockColorfulStyle}"
+                                   Foreground="{StaticResource PinkBlueLineColor}"
+                           Margin="5"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                        <TextBlock Text="Группа"
+                           Style="{StaticResource TextBlockColorfulStyle}"
+                           Margin="5"/>
+                        <TextBlock Text="{Binding GroupNumber}" 
+                           Style="{StaticResource TextBlockColorfulStyle}"
+                                   Foreground="{StaticResource PinkBlueLineColor}"
+                           Margin="5"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -23,33 +72,88 @@
                 <ColumnDefinition Width="21*"/>
             </Grid.ColumnDefinitions>
             <ListView ItemsSource="{Binding Students}" 
-                  SelectedItem="{Binding SelectedStudent}" 
-                  Grid.Column="0">
+                      SelectedItem="{Binding SelectedStudent}" 
+                      Foreground="White"
+                      Grid.Column="0"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}">FirstName</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}">LastName</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Birthday}">Birthday</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}">
+                            <TextBlock Text="Имя" Style="{StaticResource TextBlockCommonStyle}" 
+                                       HorizontalAlignment="Center"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}">
+                            <TextBlock Text="Фамилия" Style="{StaticResource TextBlockCommonStyle}"
+                                       HorizontalAlignment="Center"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Birthday, Converter={StaticResource DataTimeConverter}}">
+                            <TextBlock Text="День рождения" Style="{StaticResource TextBlockCommonStyle}"
+                                       HorizontalAlignment="Center"/>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.2*"/>
-                    <RowDefinition Height="0.8*"/>
+                    <RowDefinition Height="0.35*"/>
+                    <RowDefinition Height="0.6*"/>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0">
-                    <Image Source="{Binding SelectedImage}" Width="100"/>
-                </Border>
-                <StackPanel  
-                    DataContext="{Binding SelectedStudent}"
-                    VerticalAlignment="Center"
+                <Border Grid.Row="0"
+                BorderThickness="2"
+                BorderBrush="White"
+                HorizontalAlignment="Left"
+                CornerRadius="2"
+                Margin="5">
+            <Image Source="{Binding SelectedImage}"/>
+        </Border>
+                <StackPanel DataContext="{Binding SelectedStudent}"
+                    VerticalAlignment="Center" 
                     Grid.Row="1">
-                    <TextBlock Text="{Binding FirstName}"/>
-                    <TextBlock Text="{Binding LastName}"/>
-                    <TextBlock Text="{Binding Patronymic}"/>
-                    <TextBlock Text="{Binding PhoneNumber}"/>
-                    <TextBlock Text="{Binding Birthday}"/>
+                    <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                        <TextBlock Text="Имя"
+                           Style="{StaticResource TextBlockCommonStyle}"
+                           Margin="5"/>
+                        <TextBlock Text="{Binding FirstName}" 
+                           Style="{StaticResource TextBlockCommonStyle}"
+                           Margin="5"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                        <TextBlock Text="Фамилия" 
+                           Style="{StaticResource TextBlockCommonStyle}"
+                           Margin="5"/>
+                        <TextBlock Text="{Binding LastName}" 
+                           Style="{StaticResource TextBlockCommonStyle}"
+                           Margin="5"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                        <TextBlock Text="Отчество" 
+                           Style="{StaticResource TextBlockCommonStyle}"
+                           Margin="5"/>
+                        <TextBlock Text="{Binding Patronymic}" 
+                           Style="{StaticResource TextBlockCommonStyle}"
+                           Margin="5"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                        <TextBlock Text="Номер телефона" 
+                           Style="{StaticResource TextBlockCommonStyle}"
+                           Margin="5"/>
+                        <TextBlock Text="{Binding PhoneNumber}" 
+                           Style="{StaticResource TextBlockCommonStyle}"
+                           Margin="5"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                        <TextBlock Text="День рождения" 
+                           Style="{StaticResource TextBlockCommonStyle}"
+                           Margin="5"/>
+                        <TextBlock Text="{Binding Birthday, Converter={StaticResource DataTimeConverter}}"
+                           Style="{StaticResource TextBlockCommonStyle}"
+                           Margin="5"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Grid>

@@ -91,6 +91,7 @@
     <Compile Include="Controls\UserNavigationBar.xaml.cs">
       <DependentUpon>UserNavigationBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DateTimeToDateConverter.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
     <Compile Include="State\Navigators\INavigator.cs" />
     <Compile Include="State\Navigators\Navigator.cs" />
