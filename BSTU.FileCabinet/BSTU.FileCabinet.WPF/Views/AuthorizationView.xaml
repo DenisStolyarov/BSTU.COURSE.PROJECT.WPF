@@ -69,7 +69,8 @@
                 </ListView.View>
             </ListView>
         </Grid>
-        <Grid Grid.Column="1">
+        <Border Grid.Column="1" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="3 0 0 0">
+        <Grid>
             <StackPanel DataContext="{Binding SelectedValue}"
                     VerticalAlignment="Center" 
                     Grid.Row="1">
@@ -128,5 +129,6 @@
                         Style="{StaticResource CommonButtonStyle}"/>
             </StackPanel>
         </Grid>
+        </Border>
     </Grid>
 </UserControl>
