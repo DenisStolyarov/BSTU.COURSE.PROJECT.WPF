@@ -8,17 +8,24 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="277*"/>
-            <ColumnDefinition Width="523*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
         <ListView ItemsSource="{Binding Pulpits}" 
                   SelectedItem="{Binding SelectedValue}" 
+                  Foreground="White"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   Grid.Column="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=PulpitCode}">PulpitCode</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=PulpitName}">PulpitName</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=FacultyCode}">FacultyCode</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=PulpitCode}">
+                        <TextBlock Text="Код" Style="{StaticResource TextBlockCommonStyle}" 
+                                       HorizontalAlignment="Center"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=PulpitName}">
+                        <TextBlock Text="Название" Style="{StaticResource TextBlockCommonStyle}"
+                                       HorizontalAlignment="Center"/>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -26,16 +33,50 @@
             <StackPanel  
                     DataContext="{Binding SelectedValue}"
                     VerticalAlignment="Center">
-                <TextBox Text="{Binding FacultyCode}"/>
-                <TextBox Text="{Binding PulpitCode}"/>
-                <TextBox Text="{Binding PulpitName}"/>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Код"
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding PulpitCode}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Название" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding PulpitName}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Факультет" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding FacultyCode}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
             </StackPanel>
             <StackPanel VerticalAlignment="Bottom">
-                <Button Command="{Binding Create}" Content="Create"/>
-                <Button Command="{Binding Update}" Content="Update"/>
-                <Button Command="{Binding Delete}" Content="Delete"/>
-                <Button Command="{Binding Export}" Content="Export"/>
-                <Button Command="{Binding Import}" Content="Import"/>
+                <Button Command="{Binding Create}" 
+                        Content="Добавить"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Update}" 
+                        Content="Обновить"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Delete}" 
+                        Content="Удалить"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Export}" 
+                        Content="Экспорт"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Import}" 
+                        Content="Импорт"
+                        Style="{StaticResource CommonButtonStyle}"/>
             </StackPanel>
         </Grid>
     </Grid>
