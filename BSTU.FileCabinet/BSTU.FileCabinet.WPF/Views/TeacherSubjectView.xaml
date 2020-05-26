@@ -8,17 +8,28 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="277*"/>
-            <ColumnDefinition Width="523*"/>
+            <ColumnDefinition Width="0,5*"/>
+            <ColumnDefinition Width="0,3*"/>
         </Grid.ColumnDefinitions>
         <ListView ItemsSource="{Binding TeacherSubjects}" 
                   SelectedItem="{Binding SelectedValue}" 
+                      Foreground="White"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   Grid.Column="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=TeacherCode}">TeacherCode</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectCode}">SubjectCode</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Course}">Course</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TeacherCode}">
+                        <TextBlock Text="Преподаватель" Style="{StaticResource TextBlockCommonStyle}" 
+                                       HorizontalAlignment="Center"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectCode}">
+                        <TextBlock Text="Предмет" Style="{StaticResource TextBlockCommonStyle}"
+                                       HorizontalAlignment="Center"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Course}">
+                        <TextBlock Text="Курс" Style="{StaticResource TextBlockCommonStyle}"
+                                       HorizontalAlignment="Center"/>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -26,9 +37,33 @@
             <StackPanel  
                     DataContext="{Binding SelectedValue}"
                     VerticalAlignment="Center">
-                <TextBox Text="{Binding TeacherCode}"/>
-                <TextBox Text="{Binding SubjectCode}"/>
-                <TextBox Text="{Binding Course}"/>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Преподаватель"
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding TeacherCode}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Предмет" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding SubjectCode}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Курс" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding Course}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
             </StackPanel>
             <StackPanel VerticalAlignment="Bottom">
                 <Button Command="{Binding Create}" 
