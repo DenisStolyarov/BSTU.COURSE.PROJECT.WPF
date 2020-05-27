@@ -9,6 +9,7 @@
 
 namespace BSTU.FileCabinet.Domain.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -19,6 +20,7 @@ namespace BSTU.FileCabinet.Domain.Models
         public string Role { get; set; }
         public Nullable<int> UserId { get; set; }
     
+        [JsonIgnore]
         public virtual Student Student { get; set; }
     }
 }

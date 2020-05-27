@@ -99,14 +99,22 @@ namespace BSTU.FileCabinet.WPF.ViewModels
 
         private void SelectImage(object parameter)
         {
+            if (this.SelectedValue is null) return;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
-                var path = openFileDialog.FileName;
-                var array = ImageConverter.ImageToByteArrayFromFilePath(path);
-                this.SelectedValue.Foto = new byte[array.Length];
-                Array.Copy(array, SelectedValue.Foto, array.Length);
-                this.repository.Update(this.SelectedValue.StudentId, this.SelectedValue);
+                try
+                {
+                    var path = openFileDialog.FileName;
+                    var array = ImageConverter.ImageToByteArrayFromFilePath(path);
+                    this.SelectedValue.Foto = new byte[array.Length];
+                    Array.Copy(array, SelectedValue.Foto, array.Length);
+                    this.repository.Update(this.SelectedValue.StudentId, this.SelectedValue);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("System Error!");
+                }
             }
             UpdateCollection();
         }

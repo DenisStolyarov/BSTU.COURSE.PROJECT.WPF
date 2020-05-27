@@ -24,12 +24,12 @@ namespace BSTU.FileCabinet.WPF
             IDbContextFactory<FileCabinetContext> dbContextFactory = new FileCabinetDbContextFactory();
             IUnitOfWork unitOfWork = new UnitOfWork(dbContextFactory);
             IAuthorizationService service = new AuthorizationService(unitOfWork);
-            //Window authorization = new AuthorizationWindow(service, unitOfWork);
-            //authorization.Show();
+            Window authorization = new AuthorizationWindow(service, unitOfWork);
+            authorization.Show();
 
-            var windowFactory = new SimpleWindowFactory(unitOfWork, 87);
-            var window = windowFactory.CreateWindow(WindowType.Admin);
-            window.Show();
+            //var windowFactory = new SimpleWindowFactory(unitOfWork, 87);
+            //var window = windowFactory.CreateWindow(WindowType.Admin);
+            //window.Show();
             base.OnStartup(e);  
         }
     }

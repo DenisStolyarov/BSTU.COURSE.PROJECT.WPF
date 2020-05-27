@@ -9,6 +9,7 @@
 
 namespace BSTU.FileCabinet.Domain.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -17,8 +18,10 @@ namespace BSTU.FileCabinet.Domain.Models
         public string TeacherCode { get; set; }
         public string SubjectCode { get; set; }
         public int Course { get; set; }
-    
+
+        [JsonIgnore]
         public virtual Subject Subject { get; set; }
+        [JsonIgnore]
         public virtual Teacher Teacher { get; set; }
     }
 }

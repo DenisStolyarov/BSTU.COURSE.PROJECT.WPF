@@ -9,6 +9,7 @@
 
 namespace BSTU.FileCabinet.Domain.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -23,8 +24,10 @@ namespace BSTU.FileCabinet.Domain.Models
         public string SubjectCode { get; set; }
         public string SubjectName { get; set; }
         public string PulpitCode { get; set; }
-    
+
+        [JsonIgnore]
         public virtual Pulpit Pulpit { get; set; }
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TeacherSubject> TeacherSubjects { get; set; }
     }
