@@ -29,55 +29,57 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Column="1">
-            <StackPanel  
+        <Border Grid.Column="1" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="3 0 0 0">
+            <Grid>
+                <StackPanel  
                     DataContext="{Binding SelectedValue}"
                     VerticalAlignment="Center">
-                <StackPanel HorizontalAlignment="Left" 
+                    <StackPanel HorizontalAlignment="Left" 
                         Orientation="Horizontal">
-                    <TextBlock Text="Код"
+                        <TextBlock Text="Код"
                            Style="{StaticResource TextBlockAdminStyle}"
                            Margin="5"/>
-                    <TextBox Text="{Binding SubjectCode}" 
+                        <TextBox Text="{Binding SubjectCode}" 
                            Style="{StaticResource TextBoxAdminStyle}"
                            Margin="5"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Left" 
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
                         Orientation="Horizontal">
-                    <TextBlock Text="Название" 
+                        <TextBlock Text="Название" 
                            Style="{StaticResource TextBlockAdminStyle}"
                            Margin="5"/>
-                    <TextBox Text="{Binding SubjectName}" 
+                        <TextBox Text="{Binding SubjectName}" 
                            Style="{StaticResource TextBoxAdminStyle}"
                            Margin="5"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Left" 
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
                         Orientation="Horizontal">
-                    <TextBlock Text="Кафедра" 
+                        <TextBlock Text="Кафедра" 
                            Style="{StaticResource TextBlockAdminStyle}"
                            Margin="5"/>
-                    <TextBox Text="{Binding PulpitCode}" 
+                        <TextBox Text="{Binding PulpitCode}" 
                            Style="{StaticResource TextBoxAdminStyle}"
                            Margin="5"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-            <StackPanel VerticalAlignment="Bottom">
-                <Button Command="{Binding Create}" 
+                <StackPanel VerticalAlignment="Bottom">
+                    <Button Command="{Binding Create}" 
                         Content="Добавить"
                         Style="{StaticResource CommonButtonStyle}"/>
-                <Button Command="{Binding Update}" 
+                    <Button Command="{Binding Update}" 
                         Content="Обновить"
                         Style="{StaticResource CommonButtonStyle}"/>
-                <Button Command="{Binding Delete}" 
+                    <Button Command="{Binding Delete}" 
                         Content="Удалить"
                         Style="{StaticResource CommonButtonStyle}"/>
-                <Button Command="{Binding Export}" 
+                    <Button Command="{Binding Export}" 
                         Content="Экспорт"
                         Style="{StaticResource CommonButtonStyle}"/>
-                <Button Command="{Binding Import}" 
+                    <Button Command="{Binding Import}" 
                         Content="Импорт"
                         Style="{StaticResource CommonButtonStyle}"/>
-            </StackPanel>
-        </Grid>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

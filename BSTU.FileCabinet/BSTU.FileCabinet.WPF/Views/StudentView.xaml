@@ -41,102 +41,104 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.2*"/>
-                <RowDefinition Height="0.4*"/>
-                <RowDefinition Height="0.4*"/>
-            </Grid.RowDefinitions>
-            <Border Grid.Row="0">
-                <Image Source="{Binding SelectedImage}" Width="100"/>
-            </Border>
-            <StackPanel DataContext="{Binding SelectedValue}"
+        <Border Grid.Column="1" BorderBrush="White" BorderThickness="1" CornerRadius="5" Margin="3 0 0 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.4*"/>
+                    <RowDefinition Height="0.4*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0">
+                    <Image Source="{Binding SelectedImage}" Width="100"/>
+                </Border>
+                <StackPanel DataContext="{Binding SelectedValue}"
                         VerticalAlignment="Center"
                         Grid.Row="1">
-                <StackPanel HorizontalAlignment="Left" 
+                    <StackPanel HorizontalAlignment="Left" 
                         Orientation="Horizontal">
-                    <TextBlock Text="Id"
+                        <TextBlock Text="Id"
                            Style="{StaticResource TextBlockAdminStyle}"
                            Margin="5"/>
-                    <TextBox Text="{Binding StudentId}" 
+                        <TextBox Text="{Binding StudentId}" 
                            Style="{StaticResource TextBoxAdminStyle}"
                            Margin="5"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Left" 
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
                         Orientation="Horizontal">
-                    <TextBlock Text="Имя" 
+                        <TextBlock Text="Имя" 
                            Style="{StaticResource TextBlockAdminStyle}"
                            Margin="5"/>
-                    <TextBox Text="{Binding FirstName}" 
+                        <TextBox Text="{Binding FirstName}" 
                            Style="{StaticResource TextBoxAdminStyle}"
                            Margin="5"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Left" 
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
                         Orientation="Horizontal">
-                    <TextBlock Text="Фамилия" 
+                        <TextBlock Text="Фамилия" 
                            Style="{StaticResource TextBlockAdminStyle}"
                            Margin="5"/>
-                    <TextBox Text="{Binding LastName}" 
+                        <TextBox Text="{Binding LastName}" 
                            Style="{StaticResource TextBoxAdminStyle}"
                            Margin="5"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Left" 
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
                         Orientation="Horizontal">
-                    <TextBlock Text="Отчество" 
+                        <TextBlock Text="Отчество" 
                            Style="{StaticResource TextBlockAdminStyle}"
                            Margin="5"/>
-                    <TextBox Text="{Binding Patronymic}" 
+                        <TextBox Text="{Binding Patronymic}" 
                            Style="{StaticResource TextBoxAdminStyle}"
                            Margin="5"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Left" 
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
                         Orientation="Horizontal">
-                    <TextBlock Text="Телефон" 
+                        <TextBlock Text="Телефон" 
                            Style="{StaticResource TextBlockAdminStyle}"
                            Margin="5"/>
-                    <TextBox Text="{Binding PhoneNumber}" 
+                        <TextBox Text="{Binding PhoneNumber}" 
                            Style="{StaticResource TextBoxAdminStyle}"
                            Margin="5"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Left" 
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
                         Orientation="Horizontal">
-                    <TextBlock Text="День рождения" 
+                        <TextBlock Text="День рождения" 
                            Style="{StaticResource TextBlockAdminStyle}"
                            Margin="5"/>
-                    <TextBox Text="{Binding Birthday, Converter={StaticResource DataTimeConverter}}" 
+                        <TextBox Text="{Binding Birthday, Converter={StaticResource DataTimeConverter}}" 
                            Style="{StaticResource TextBoxAdminStyle}"
                            Margin="5"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Left" 
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" 
                         Orientation="Horizontal">
-                    <TextBlock Text="Группа (Id)" 
+                        <TextBlock Text="Группа (Id)" 
                            Style="{StaticResource TextBlockAdminStyle}"
                            Margin="5"/>
-                    <TextBox Text="{Binding GroupId}" 
+                        <TextBox Text="{Binding GroupId}" 
                            Style="{StaticResource TextBoxAdminStyle}"
                            Margin="5"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-            <StackPanel VerticalAlignment="Bottom" Grid.Row="2" Margin="0 5 0 0">
-                <Button Command="{Binding Browse}" 
+                <StackPanel VerticalAlignment="Bottom" Grid.Row="2" Margin="0 5 0 0">
+                    <Button Command="{Binding Browse}" 
                         Content="Обзор"
                         Style="{StaticResource CommonButtonStyle}"/>
-                <Button Command="{Binding Create}" 
+                    <Button Command="{Binding Create}" 
                         Content="Добавить"
                         Style="{StaticResource CommonButtonStyle}"/>
-                <Button Command="{Binding Update}" 
+                    <Button Command="{Binding Update}" 
                         Content="Обновить"
                         Style="{StaticResource CommonButtonStyle}"/>
-                <Button Command="{Binding Delete}" 
+                    <Button Command="{Binding Delete}" 
                         Content="Удалить"
                         Style="{StaticResource CommonButtonStyle}"/>
-                <Button Command="{Binding Export}" 
+                    <Button Command="{Binding Export}" 
                         Content="Экспорт"
                         Style="{StaticResource CommonButtonStyle}"/>
-                <Button Command="{Binding Import}" 
+                    <Button Command="{Binding Import}" 
                         Content="Импорт"
                         Style="{StaticResource CommonButtonStyle}"/>
-            </StackPanel>
-        </Grid>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
