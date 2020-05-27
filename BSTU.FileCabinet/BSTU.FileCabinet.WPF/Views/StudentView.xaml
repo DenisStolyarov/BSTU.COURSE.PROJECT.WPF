@@ -5,25 +5,39 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BSTU.FileCabinet.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:converter="clr-namespace:BSTU.FileCabinet.WPF.Converters"
+             d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:DateTimeToDateConverter x:Key="DataTimeConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="277*"/>
-            <ColumnDefinition Width="523*"/>
+            <ColumnDefinition Width="0,5*"/>
+            <ColumnDefinition Width="0,5*"/>
         </Grid.ColumnDefinitions>
         <ListView ItemsSource="{Binding Students}" 
-                  SelectedItem="{Binding SelectedValue}" 
+                  SelectedItem="{Binding SelectedValue}"
+                      Foreground="White"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   Grid.Column="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=StudentId}">Id</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=GroupId}">GroupId</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}">FirstName</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}">LastName</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Patronymic}">Patronymic</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=PhoneNumber}">PhoneNumber</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Birthday}">Birthday</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Foto}">Foto</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=StudentId}">
+                        <TextBlock Text="Id" Style="{StaticResource TextBlockCommonStyle}" 
+                                       HorizontalAlignment="Center"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}">
+                        <TextBlock Text="Имя" Style="{StaticResource TextBlockCommonStyle}"
+                                       HorizontalAlignment="Center"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}">
+                        <TextBlock Text="Фамилия" Style="{StaticResource TextBlockCommonStyle}"
+                                       HorizontalAlignment="Center"/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=GroupId}">
+                        <TextBlock Text="Id Группы" Style="{StaticResource TextBlockCommonStyle}"
+                                       HorizontalAlignment="Center"/>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -39,21 +53,89 @@
             <StackPanel DataContext="{Binding SelectedValue}"
                         VerticalAlignment="Center"
                         Grid.Row="1">
-                <TextBox Text="{Binding StudentId}"/>
-                <TextBox Text="{Binding GroupId}"/>
-                <TextBox Text="{Binding FirstName}"/>
-                <TextBox Text="{Binding LastName}"/>
-                <TextBox Text="{Binding Patronymic}"/>
-                <TextBox Text="{Binding PhoneNumber}"/>
-                <TextBox Text="{Binding Birthday}"/>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Id"
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding StudentId}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Имя" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding FirstName}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Фамилия" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding LastName}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Отчество" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding Patronymic}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Телефон" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding PhoneNumber}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="День рождения" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding Birthday, Converter={StaticResource DataTimeConverter}}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" 
+                        Orientation="Horizontal">
+                    <TextBlock Text="Группа (Id)" 
+                           Style="{StaticResource TextBlockAdminStyle}"
+                           Margin="5"/>
+                    <TextBox Text="{Binding GroupId}" 
+                           Style="{StaticResource TextBoxAdminStyle}"
+                           Margin="5"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel VerticalAlignment="Bottom" Grid.Row="2">
-                <Button Command="{Binding Browse}" Content="Browse"/>
-                <Button Command="{Binding Create}" Content="Create"/>
-                <Button Command="{Binding Update}" Content="Update"/>
-                <Button Command="{Binding Delete}" Content="Delete"/>
-                <Button Command="{Binding Export}" Content="Export"/>
-                <Button Command="{Binding Import}" Content="Import"/>
+            <StackPanel VerticalAlignment="Bottom" Grid.Row="2" Margin="0 5 0 0">
+                <Button Command="{Binding Browse}" 
+                        Content="Обзор"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Create}" 
+                        Content="Добавить"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Update}" 
+                        Content="Обновить"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Delete}" 
+                        Content="Удалить"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Export}" 
+                        Content="Экспорт"
+                        Style="{StaticResource CommonButtonStyle}"/>
+                <Button Command="{Binding Import}" 
+                        Content="Импорт"
+                        Style="{StaticResource CommonButtonStyle}"/>
             </StackPanel>
         </Grid>
     </Grid>
